@@ -1,3 +1,5 @@
+package main;
+
 /*
 CPSC 233
 Assignment 4
