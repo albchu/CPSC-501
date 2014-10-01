@@ -1,3 +1,5 @@
+package main;
+
 /*
 CPSC 233
 Assignment 4
@@ -8,6 +10,7 @@ Professor James Tam
 Updated March 11th 3:11pm
 Version 1.24
  */
+
 
 import java.util.*;
 
