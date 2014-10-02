@@ -214,12 +214,9 @@ public class Forest
 		return false;
 	}
 
-	public boolean inBorders(int r, int c)
+	public boolean inBorders(int val)
 	{
-		boolean withinBorders = true;
-		if (r < 0 || r >= 10 || c < 0 || c >= 10)
-			withinBorders = false;
-		return withinBorders;
+		return (val >= 0 && val < SIZE);
 	}
 
 	public void movePlayer(int n)
