@@ -155,24 +155,13 @@ public class CommandProcessor
 		if (GameStatus.checkStatus() == GameStatus.WON)
 		{
 			TextDisplay.alert("YOU HAVE BEATEN THE GAME");
-//			System.out.println("------------------------");
-//			System.out.println("YOU HAVE BEATEN THE GAME");
-//			System.out.println("------------------------");
 		} else if (GameStatus.checkStatus() == GameStatus.LOST)
 		{
 			TextDisplay.alert("YOU HAVE LOST THE GAME");
-			
-//			System.out.println("----------------------");
-//			System.out.println("YOU HAVE LOST THE GAME");
-//			System.out.println("----------------------");
 		} else
 		{
 			//TODO: Cannot quit early, functionality needs to be added
 			TextDisplay.alert("QUITTING ALREADY?");
-//			System.out.println("----------------------");
-//			System.out.println("QUITTING ALREADY?");
-//			System.out.println("GAME ENDED ON DRAW");
-//			System.out.println("----------------------");
 		}
 
 	}
