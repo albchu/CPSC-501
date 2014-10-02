@@ -44,7 +44,7 @@ public class CommandProcessor
 	{
 		move = in.nextInt();
 		//TODO: Refactor: Create bound check method
-		if (move > 0 && move < 10)
+		if (greenwood.inBorders(move))
 		{
 			greenwood.movePlayer(move);
 			
@@ -142,7 +142,7 @@ public class CommandProcessor
 				greenwood.movePlayer(greenwood.panicMove());
 			}
 			instructions();
-			greenwood.addTokens();
+//			greenwood.addTokens();
 			userInput();
 		} while (GameStatus.checkStatus() == GameStatus.NEUTRAL);
 

@@ -201,7 +201,7 @@ public class Forest
 			for (int c = playerColumn - 1; c <= playerColumn + 1; c++)
 			{
 
-				if (inBorders(r, c))
+				if (inBorders(r) && inBorders(c))
 				{
 					if (grid[r][c] != null
 							&& grid[r][c].getAppearance() == ForestItem.TOKEN_ICON)
@@ -226,7 +226,8 @@ public class Forest
 
 		int x = playerColumn + dx;
 		int y = playerRow + dy;
-		if (x < 0 || x > SIZE - 1 || y < 0 || y > SIZE - 1
+		System.out.println("Player Position: (" + x + ", " + y + ")");
+		if (!inBorders(x) || !inBorders(y)
 				|| grid[y][x] != null
 				&& grid[y][x].getAppearance() != ForestItem.EXIT_ICON)
 		{
