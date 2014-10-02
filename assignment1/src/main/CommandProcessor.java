@@ -95,36 +95,12 @@ public class CommandProcessor
 
 	public void cheatToggle()
 	{
-		//TODO: Refactor: replace code with simple version
-		if (Mode.cheat == false)
-		{
-			TextDisplay.cheat("Mode: ON");
-			Mode.cheat = true;
-		} else if (Mode.cheat == true)
-		{
-			System.out.println("CheatMode: OFF");
-			Mode.cheat = false;
-		} else
-		{
-			System.out.println("ERROR: Could not change CHEAT mode");
-		}
+		Mode.cheat = !Mode.cheat;
 	}
 
 	public void debugToggle()
 	{
-		//TODO: Refactor: replace code with simple version
-		if (Mode.debug == false)
-		{
-			System.out.println("CheatMode: ON");
-			Mode.debug = true;
-		} else if (Mode.debug == true)
-		{
-			System.out.println("CheatMode: OFF");
-			Mode.debug = false;
-		} else
-		{
-			System.out.println("ERROR: Could not change DEBUG mode");
-		}
+		Mode.debug = !Mode.debug;
 	}
 
 	public void intro()
