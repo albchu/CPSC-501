@@ -65,11 +65,7 @@ public class CommandProcessor
 		} else if (move == 0)
 		{
 			hiddenMenu();
-		} else
-		{
-			//TODO: Refactor: redundant code
-			return move;
-		}
+		} 
 		return move;
 	}
 
