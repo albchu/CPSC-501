@@ -50,7 +50,12 @@ public class Forest
 		player.setCourage(100);
 
 	}
+	
 
+	/**
+	 * Creates initial forest grid
+	 * @return
+	 */
 	public ForestItem[][] getGrid()
 	{
 		ForestItem aGrid[][] = new ForestItem[10][10];

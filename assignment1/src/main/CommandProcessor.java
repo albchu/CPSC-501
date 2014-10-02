@@ -133,8 +133,6 @@ public class CommandProcessor
 
 	public void start()
 	{
-		greenwood.getGrid();
-		ForestItem player = greenwood.getPlayerLocation();
 		intro();
 		do
 		{
