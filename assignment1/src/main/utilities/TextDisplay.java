@@ -50,9 +50,19 @@ public class TextDisplay
 	
 	public static void alert(String message)
 	{
-		display(repeatChar('-'));
+		alert(message, DEFAULT_TEXT_WRAP);
+	}
+	
+	public static void alertMsgLen(String message)
+	{
+		alert(message, message.length());
+	}
+	
+	public static void alert(String message, int repetitions)
+	{
+		display(repeatChar('-', repetitions));
 		display(message);
-		display(repeatChar('-'));
+		display(repeatChar('-', repetitions));
 	}
 	
 	public static void debug(String message)

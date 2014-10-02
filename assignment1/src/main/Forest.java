@@ -13,6 +13,8 @@ package main;
 
 import java.util.Random;
 
+import main.utilities.TextDisplay;
+
 public class Forest
 {
 	public static final int EXIT_ROW = 9;
@@ -22,7 +24,7 @@ public class Forest
 	private static final int MIN_RANDOM_TOKENS = 5;
 	private ForestItem grid[][];
 	private final String HORIZONTAL_NUMBERS = "  0 1 2 3 4 5 6 7 8 9 ";
-	private final String HORIZONTAL_BORDER = "  - - - - - - - - - - ";
+	private final String HORIZONTAL_BORDER = "  ------------------- ";
 	private int playerRow;
 	private int playerColumn;
 	private int numberTokens;
@@ -66,11 +68,9 @@ public class Forest
 	{
 		if (Mode.debug)
 		{
-			System.out.println();
-			System.out.println("<<Debug: Forest.getPlayer() ");
-			System.out.println();
+			TextDisplay.debug("Forest.getPlayer()");
 			if (grid[playerRow][playerColumn] == null)
-				System.out.println("Player has become null");
+				TextDisplay.alertMsgLen("Player has become null");
 		}
 		return grid[playerRow][playerColumn];
 	}
@@ -98,14 +98,9 @@ public class Forest
 	public void display()
 	{
 		courage = player.getCourage();
-		if (Mode.debug)
-		{
-			System.out.println("-------------------------");
-			System.out.println(">> Debug: Forest.display()");
-			System.out.println("-------------------------");
-		}
-		System.out.println("Player Courage: " + courage);
-		System.out.println(HORIZONTAL_NUMBERS);
+		TextDisplay.debug("Forest.display()");
+		TextDisplay.alert("Player Courage: " + courage);
+		TextDisplay.alertMsgLen(HORIZONTAL_NUMBERS);
 		for (int r = 0; r < SIZE; r++)
 		{
 			System.out.println(HORIZONTAL_BORDER);
@@ -120,17 +115,12 @@ public class Forest
 			}
 			System.out.println("|");
 		}
-		System.out.println("  - - - - - - - - - - ");
-		if (Mode.debug)
-			System.out.println("DEBUG MODE ON");
-		if (Mode.cheat)
-			System.out.println("CHEAT MODE ON");
-		System.out.println();
+		TextDisplay.debug("MODE ON");
+		TextDisplay.cheat("MODE ON");
 	}
 
 	public void addTokens()
 	{
-		// ALGORITHM ADAPTED FROM XIN LIU'S TUTORIAL CODE
 		Random random = new Random();
 		int tokensAdded = random.nextInt(4) + 5;
 		int count = 1;
@@ -191,9 +181,7 @@ public class Forest
 
 	public int panicMove()
 	{
-		System.out.println();
-		System.out.println("The player panics and moves before you decide");
-		System.out.println();
+		TextDisplay.alert("The player panics and moves before you decide");
 		Random random = new Random();
 		return random.nextInt(9) + 1;
 	}
@@ -201,12 +189,7 @@ public class Forest
 	public boolean adjacentToToken()
 	{
 		boolean tokensFound = false;
-		if (Mode.debug)
-		{
-			System.out.println();
-			System.out.println("<<Debug: Forest.isAdjacentToken()");
-			System.out.println();
-		}
+		TextDisplay.debug("Forest.isAdjacentToken()");
 		System.out.println(playerRow + playerColumn);
 		for (int r = playerRow - 1; r <= playerRow + 1; r++)
 		{
@@ -236,7 +219,6 @@ public class Forest
 
 	public void movePlayer(int n)
 	{
-		// THE FOLLOWING ALGORITHM WAS ADAPTED FROM XIN LIU'S TUTORIAL CODE
 		int dx = (n - 1) % 3 - 1;
 		int dy = -((n - 1) / 3 - 1);
 
@@ -246,10 +228,7 @@ public class Forest
 				|| grid[y][x] != null
 				&& grid[y][x].getAppearance() != ForestItem.EXIT_ICON)
 		{
-			System.out.println();
-			System.out
-					.println("Either you're trying to punch a token or run into a wall,\nyou're not going anywhere");
-			System.out.println();
+			TextDisplay.alert("Either you're trying to punch a token or run into a wall,\nyou're not going anywhere");
 		} else
 		{
 
