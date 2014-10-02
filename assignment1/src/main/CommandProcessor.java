@@ -32,10 +32,10 @@ public class CommandProcessor
 	public void instructions()
 	{
 		TextDisplay.debug("Display Instructions");
-		System.out.println("MOVEMENT INSTRUCTIONS");
-		System.out.println("\t7 8 9");
-		System.out.println("\t4 5 6");
-		System.out.println("\t1 2 3");
+		TextDisplay.display("MOVEMENT INSTRUCTIONS");
+		TextDisplay.display("\t7 8 9");
+		TextDisplay.display("\t4 5 6");
+		TextDisplay.display("\t1 2 3");
 	}
 
 	public int userInput()
@@ -189,6 +189,7 @@ public class CommandProcessor
 //			System.out.println("----------------------");
 		} else
 		{
+			//TODO: Cannot quit early, functionality needs to be added
 			TextDisplay.alert("QUITTING ALREADY?");
 //			System.out.println("----------------------");
 //			System.out.println("QUITTING ALREADY?");
