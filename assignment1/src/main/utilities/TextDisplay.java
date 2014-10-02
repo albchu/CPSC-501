@@ -1,4 +1,6 @@
-package main;
+package main.utilities;
+
+import main.Mode;
 
 /**
  * Class of static methods to hold text display functionality

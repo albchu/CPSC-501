@@ -1,6 +1,6 @@
 package test.unit;
 
-import main.TextDisplay;
+import main.utilities.TextDisplay;
 
 import org.junit.Assert;
 import org.junit.Test;

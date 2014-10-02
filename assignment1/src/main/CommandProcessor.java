@@ -13,6 +13,8 @@ package main;
 
 import java.util.Scanner;
 
+import main.utilities.TextDisplay;
+
 public class CommandProcessor
 {
 	public static Forest greenwood;
