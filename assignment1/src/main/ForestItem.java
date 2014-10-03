@@ -11,11 +11,8 @@ package main;
  Version 1.24
  */
 
-import java.util.Random;
-
 public class ForestItem
 {
-	private int playerCourage;
 	private final int OTHERCOURAGE = 0;
 	private char appearance;
 	public final static char TOKEN_ICON = 'x';
@@ -23,7 +20,6 @@ public class ForestItem
 	public final static char PLAYER_ICON = 'p';
 	public final static char EMPTY = ' ';
 	private int courage;
-	private static final int TOKEN_FEAR = 10;
 	public static final int PLAYER_STARTING_COURAGE = 100;
 	public static final int PANIC_LEVEL = 25;
 	public static int tokenRow;

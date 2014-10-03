@@ -20,20 +20,20 @@ public class ForestTests
 	@Test
 	public void inBordersTest()
 	{
-		Assert.assertEquals(true, forest.inBorders(5));
+		Assert.assertTrue(forest.inBorders(5));
 	}
 
 	@Test
 	public void inBordersUpperEdgeTest()
 	{
-		Assert.assertEquals(true, forest.inBorders(9));
-		Assert.assertEquals(false, forest.inBorders(10));
+		Assert.assertTrue(forest.inBorders(9));
+		Assert.assertFalse(forest.inBorders(10));
 	}
 	
 	@Test
 	public void inBordersLowerEdgeTest()
 	{
-		Assert.assertEquals(true, forest.inBorders(0));
-		Assert.assertEquals(false, forest.inBorders(-1));
+		Assert.assertTrue(forest.inBorders(0));
+		Assert.assertFalse(forest.inBorders(-1));
 	}
 }

@@ -151,7 +151,7 @@ public class Forest
 				}
 			if (vacantSpaces == 0)
 			{
-				System.out.println("grid is full");
+				TextDisplay.alert("Grid is full");
 
 			}
 			arrayNum = random.nextInt(vacantSpaces);

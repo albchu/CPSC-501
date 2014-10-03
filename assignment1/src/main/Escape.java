@@ -11,8 +11,6 @@ package main;
  Version 1.24
  */
 
-import java.util.*;
-
 public class Escape
 {
 	public static void main(String[] args)

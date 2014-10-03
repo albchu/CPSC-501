@@ -9,7 +9,7 @@ import main.Mode;
  */
 public class TextDisplay 
 {
-	private static int DEFAULT_TEXT_WRAP = 50;	// The default value to wrap around display text.
+	private static int DEFAULT_TEXT_WRAP = 25;	// The default value to wrap around display text.
 	private static String DEFAULT_DELIMINATOR =  "\n";	// The default value to wrap around display text.
 	
 	/**

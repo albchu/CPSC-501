@@ -13,6 +13,9 @@ package main;
 
 import java.util.Scanner;
 
+import javax.swing.text.Utilities;
+
+import main.utilities.Common;
 import main.utilities.TextDisplay;
 
 public class CommandProcessor
@@ -43,7 +46,6 @@ public class CommandProcessor
 	public int userInput()
 	{
 		move = in.nextInt();
-		//TODO: Refactor: Create bound check method
 		if (greenwood.inBorders(move))
 		{
 			greenwood.movePlayer(move);
@@ -103,31 +105,7 @@ public class CommandProcessor
 
 	public void intro()
 	{
-		//TODO: Refactor: This text should be read in from a file which is more easily changable
-		System.out.println();
-		System.out.println("ESCAPE FROM THE WOODS");
-		System.out.println("---------------------");
-		System.out.println("Your party 'P' is lost in the middle of the");
-		System.out.println("greenwood and you must guide them safely to");
-		System.out.println("exit 'E'. It's not as easy as it sounds though,");
-		System.out.println("the horrors of wood decreases your party's");
-		System.out.println("courage over time. The longer you take to escape");
-		System.out.println("the weaker you will get. If your courage gets");
-		System.out.println("too low then your party may panic and run off");
-		System.out.println("randomly into the woods. If your courage reaches");
-		System.out.println("zero then your party has died of fright and you");
-		System.out.println("lose the game!");
-		System.out.println();
-		System.out.println("Further challenges abound, scary magic tokens 'x'");
-		System.out.println("randomly appear. If your party gets close enough");
-		System.out.println("to them then their courage will quickly drain");
-		System.out.println("away.");
-		System.out.println();
-		System.out.println("Are you up to the challenge of saving your");
-		System.out.println("hapless party? Find out now and see if you can");
-		System.out.println("ESCAPE FROM THE WOODS!!!");
-		System.out.println();
-		System.out.println("Press enter to proceed");
+		TextDisplay.alert(Common.readFromFile("intro.txt"));
 		in.nextLine();
 	}
 
@@ -137,13 +115,13 @@ public class CommandProcessor
 		do
 		{
 			greenwood.display();
+			instructions();
+			userInput();
 			if (greenwood.isPanicking())
 			{
 				greenwood.movePlayer(greenwood.panicMove());
 			}
-			instructions();
-//			greenwood.addTokens();
-			userInput();
+			greenwood.addTokens();
 		} while (GameStatus.checkStatus() == GameStatus.NEUTRAL);
 
 		if (GameStatus.checkStatus() == GameStatus.WON)
