@@ -16,8 +16,6 @@ public class Inspector
 		System.out.println("Declaring Class: " + ObjClass.getDeclaringClass());
 		System.out.println("Intermediate Super Class: " + ObjClass.getSuperclass());
 
-		for (Class clazz : ObjClass.getInterfaces())
-			System.out.println("Implements Class: " + clazz);
 
 		for (Method method : ObjClass.getMethods())
 		{
@@ -25,14 +23,19 @@ public class Inspector
 		}
 
 		// inspect the current class
-		//inspectInterfaces(obj, ObjClass, objectsToInspect);
-		inspectFields(obj, ObjClass, objectsToInspect);
+		inspectInterfaces(obj, ObjClass, objectsToInspect);
+//		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
 			inspectFieldClasses(obj, ObjClass, objectsToInspect, recursive);
 
 	}
 
+	private void inspectInterfaces(Object obj, Class objClass, Vector objectsToInspect)
+	{
+		for (Class clazz : objClass.getInterfaces())
+			System.out.println("Implements Class: " + clazz);
+	}
 
 	// -----------------------------------------------------------
 	private void inspectFieldClasses(Object obj, Class ObjClass, Vector objectsToInspect, boolean recursive)
