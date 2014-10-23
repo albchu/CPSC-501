@@ -25,7 +25,7 @@ public class Inspector
 		}
 
 		// inspect the current class
-		inspectInterfaces(obj, ObjClass, objectsToInspect);
+		//inspectInterfaces(obj, ObjClass, objectsToInspect);
 		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
@@ -33,11 +33,6 @@ public class Inspector
 
 	}
 
-	private void inspectInterfaces(Object obj, Class objClass, Vector objectsToInspect)
-	{
-		// TODO Auto-generated method stub
-
-	}
 
 	// -----------------------------------------------------------
 	private void inspectFieldClasses(Object obj, Class ObjClass, Vector objectsToInspect, boolean recursive)
