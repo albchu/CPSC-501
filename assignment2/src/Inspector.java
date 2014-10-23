@@ -23,7 +23,7 @@ public class Inspector
 		}
 
 		// inspect the current class
-		inspectInterfaces(obj, ObjClass, objectsToInspect);
+		inspectInterfaces(ObjClass);
 //		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
@@ -31,9 +31,9 @@ public class Inspector
 
 	}
 
-	private void inspectInterfaces(Object obj, Class objClass, Vector objectsToInspect)
+	private void inspectInterfaces(Class<?> objClass)
 	{
-		for (Class clazz : objClass.getInterfaces())
+		for (Class<?> clazz : objClass.getInterfaces())
 			System.out.println("Implements Class: " + clazz);
 	}
 
