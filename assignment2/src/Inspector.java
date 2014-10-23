@@ -1,4 +1,5 @@
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -9,10 +10,22 @@ public class Inspector
 		Vector objectsToInspect = new Vector();
 		Class ObjClass = obj.getClass();
 
-		System.out.println("inside inspector: " + obj + " (recursive = "
-				+ recursive + ")");
+		System.out.println("inside inspector: " + obj + " (recursive = " + recursive + ")");
+
+		System.out.println("Current Class: " + ObjClass.getName());
+		System.out.println("Declaring Class: " + ObjClass.getDeclaringClass());
+		System.out.println("Intermediate Super Class: " + ObjClass.getSuperclass());
+
+		for (Class clazz : ObjClass.getInterfaces())
+			System.out.println("Implements Class: " + clazz);
+
+		for (Method method : ObjClass.getMethods())
+		{
+
+		}
 
 		// inspect the current class
+		inspectInterfaces(obj, ObjClass, objectsToInspect);
 		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
@@ -20,9 +33,14 @@ public class Inspector
 
 	}
 
+	private void inspectInterfaces(Object obj, Class objClass, Vector objectsToInspect)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
 	// -----------------------------------------------------------
-	private void inspectFieldClasses(Object obj, Class ObjClass,
-			Vector objectsToInspect, boolean recursive)
+	private void inspectFieldClasses(Object obj, Class ObjClass, Vector objectsToInspect, boolean recursive)
 	{
 
 		if (objectsToInspect.size() > 0)
@@ -62,8 +80,7 @@ public class Inspector
 			try
 			{
 
-				System.out
-						.println("Field: " + f.getName() + " = " + f.get(obj));
+				System.out.println("Field: " + f.getName() + " = " + f.get(obj));
 			} catch (Exception e)
 			{
 			}
