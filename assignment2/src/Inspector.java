@@ -38,7 +38,7 @@ public class Inspector
 	public void inspect(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
 		if(ObjClass.isArray())
-			inspectArray(origInstance, recursive);
+			inspectArray(origInstance, recursive, depth);
 		else
 			inspectObject(origInstance, ObjClass, recursive, depth);
 	}
@@ -46,12 +46,28 @@ public class Inspector
 	
 	
 	/**
-	 * Assumption: this 
+	 * Assumption: origInstance is an array
 	 * @param obj
+	 * @param recursive
 	 */
-	private void inspectArray(Object origInstance, boolean recursive)
+	private void inspectArray(Object origInstance, boolean recursive, int depth)
 	{
-		System.out.println("Yay you got an array");
+		display("Array Object:", depth);
+		display("Reference: " + origInstance, depth + 1);
+		display();
+		display("Array size: " + ((Object[]) origInstance).length, depth + 1);
+		display();
+		for (int i = 0; i < ((Object[]) origInstance).length ; i++)
+		{
+			display("Element Index: " + i, depth + 1);
+			Object elementObj = ((Object[]) origInstance)[i];
+			if (elementObj != null)
+				inspect(elementObj, elementObj.getClass(), recursive, depth + 1);
+			else
+				display("Element: Null", depth + 1);
+			display();
+		}
+		display();
 	}
 	
 	private void inspectObject(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
@@ -159,6 +175,7 @@ public class Inspector
 				{
 					exp.printStackTrace();
 				}
+				display();
 		}
 		display();
 	}
