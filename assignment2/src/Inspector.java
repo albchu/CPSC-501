@@ -38,8 +38,6 @@ public class Inspector
 		Class<?> superClass = ObjClass.getSuperclass();
 		inspectedClasses.add(ObjClass);
 		
-//		display("INSPECTING: ", depth);
-		
 		display("Class Name: " + ObjClass.getName(), depth);
 		display("Recursion: " + recursive, depth);
 		display("Declaring Class: " + ObjClass.getDeclaringClass(), depth);
@@ -60,9 +58,6 @@ public class Inspector
 				inspect(origInstance, superClass, recursive, depth + 1);
 			}
 		}
-		
-//		//inspect(obj.getClass().getSuperclass(), recursive);
-//		display(inspectedClasses.contains(superClass));
 	}
 	
 	private void inspectConstructors(Class<?> objClass, int depth)
@@ -83,9 +78,6 @@ public class Inspector
 			display();
 		}
 		display();
-		
-//		if (objClass.getSuperclass() != null)
-//			inspectConstructors(objClass.getSuperclass());
 	}
 	
 	private void inspectMethods(Class<?> objClass, int depth)
@@ -107,8 +99,6 @@ public class Inspector
 			display();
 		}
 		display();
-//		if (objClass.getSuperclass() != null)
-//			inspectMethods(objClass.getSuperclass());
 	}
 
 	private void inspectInterfaces(Class<?> objClass, int depth)
@@ -122,36 +112,27 @@ public class Inspector
 			display();
 		}
 		display();
-		
-//		if (objClass.getSuperclass() != null)
-//			inspectInterfaces(objClass.getSuperclass());
 	}
 
-	// -----------------------------------------------------------
 	private void inspectFieldClasses(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, boolean recursive, int depth)
 	{
 
 		if (objectsToInspect.size() > 0)
 			display("FIELD CLASSES:", depth);
 		else return;
-//		Enumeration e = objectsToInspect.elements();
-//		while (e.hasMoreElements())
-		for (Field f : objectsToInspect)
+		for (Field field : objectsToInspect)
 		{
-//			Field f = (Field) e.nextElement();
-			f.setAccessible(true);
-			display("Field Class Name: " + f.getName(), depth + 1);
+			field.setAccessible(true);
+			display("Field Class Name: " + field.getName(), depth + 1);
 				try
 				{
-//					display("******************", depth);
-					if(f.get(obj) == null)
+					if(field.get(obj) == null)
 						display("No value given", depth + 1);
 					else
 					{
 						Inspector newInspect = new Inspector(); // Needs a new instance otherwise we may cut a superclass unexpectedly
-						newInspect.inspect(f.get(obj), f.get(obj).getClass(), recursive, depth + 1); 
+						newInspect.inspect(field.get(obj), field.get(obj).getClass(), recursive, depth + 1); 
 					}
-//					display("******************", depth);
 				} catch (Exception exp)
 				{
 					exp.printStackTrace();
@@ -176,7 +157,6 @@ public class Inspector
 					
 			try
 			{
-
 				display("Value: " + field.get(obj), depth + 1);
 			} catch (Exception e)
 			{
@@ -188,13 +168,5 @@ public class Inspector
 			display();
 		}
 		display();
-
-//		if (ObjClass.getSuperclass() != null)
-//			inspectFields(obj, ObjClass.getSuperclass(), objectsToInspect);
-	}
-
-	public static void main(String[] args)
-	{
-		display("Helloworld", 0);
 	}
 }

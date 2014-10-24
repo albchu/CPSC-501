@@ -86,9 +86,9 @@ public class Asst2TestDriver
 			Asst2TestDriver driver = new Asst2TestDriver(args[0],rec);
 //			driver.runTest( new ClassA() );
 //			driver.runTest( new ClassA(12) );
-			driver.runTest( new ClassB() );
+//			driver.runTest( new ClassB() );
 //			driver.runTest( new ClassCConcrete() );
-//			driver.runTest( new ClassCConcrete(4,5) );
+			driver.runTest( new ClassCConcrete(4,5) );
 //			driver.runTest( new ClassD(32) );
 //			driver.runTest( new ClassD() );
 //			driver.runTest( new ClassB[12] );
