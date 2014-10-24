@@ -24,10 +24,13 @@ Running the tester
     java Asst2TestDriver ( name / full path to your Object inspector)
  
 
-(eg)  java Asst2TestDriver  ObjectInspector
+(eg)  java Asst2TestDriver  Inspector
 
 You can veryify the ouput by checking back to the structure of the
 test classes to make sure they are correct.
 
-
-
+Compiling
+-----------
+There are classes in packages that need to be compiled. To compile everything in src folder please do
+javac -Xlint *.java
+javac -Xlint */*.java 

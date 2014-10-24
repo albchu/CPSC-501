@@ -1,0 +1,1560 @@
+Loading object inspector: Inspector
+======================================================
+Running Test: ClassA
+Recursion: false
+Class Name: ClassA
+Declaring Class: null
+Intermediate Super Class: class java.lang.Object
+Constructors:
+	Name: ClassA
+	Modifier: public
+	Declaring Class: ClassA
+
+	Name: ClassA
+	Modifier: public
+	Parameter types: int
+	Declaring Class: ClassA
+
+
+Interfaces:
+	java.io.Serializable
+
+	java.lang.Runnable
+
+
+Fields:
+	Name: val
+	Value: 3
+	Modifier: private
+	Type: int
+	Declaring Class: ClassA
+
+	Name: val2
+	Value: 0.2
+	Modifier: private
+	Type: double
+	Declaring Class: ClassA
+
+	Name: val3
+	Value: true
+	Modifier: private
+	Type: boolean
+	Declaring Class: ClassA
+
+
+Methods:
+	Name: run
+	Modifier: public
+	Return Type: void
+	Declaring Class: ClassA
+
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: ClassA
+
+	Name: setVal
+	Modifier: public
+	Return Type: void
+	Exception thrown: java.lang.Exception
+	Parameter types: int
+	Declaring Class: ClassA
+
+	Name: getVal
+	Modifier: public
+	Return Type: int
+	Declaring Class: ClassA
+
+	Name: printSomething
+	Modifier: private
+	Return Type: void
+	Declaring Class: ClassA
+
+
+======================================================
+======================================================
+Running Test: ClassA
+Recursion: false
+Class Name: ClassA
+Declaring Class: null
+Intermediate Super Class: class java.lang.Object
+Constructors:
+	Name: ClassA
+	Modifier: public
+	Declaring Class: ClassA
+
+	Name: ClassA
+	Modifier: public
+	Parameter types: int
+	Declaring Class: ClassA
+
+
+Interfaces:
+	java.io.Serializable
+
+	java.lang.Runnable
+
+
+Fields:
+	Name: val
+	Value: 12
+	Modifier: private
+	Type: int
+	Declaring Class: ClassA
+
+	Name: val2
+	Value: 0.2
+	Modifier: private
+	Type: double
+	Declaring Class: ClassA
+
+	Name: val3
+	Value: true
+	Modifier: private
+	Type: boolean
+	Declaring Class: ClassA
+
+
+Methods:
+	Name: run
+	Modifier: public
+	Return Type: void
+	Declaring Class: ClassA
+
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: ClassA
+
+	Name: setVal
+	Modifier: public
+	Return Type: void
+	Exception thrown: java.lang.Exception
+	Parameter types: int
+	Declaring Class: ClassA
+
+	Name: getVal
+	Modifier: public
+	Return Type: int
+	Declaring Class: ClassA
+
+	Name: printSomething
+	Modifier: private
+	Return Type: void
+	Declaring Class: ClassA
+
+
+======================================================
+======================================================
+Running Test: ClassB
+Recursion: false
+Class Name: ClassB
+Declaring Class: null
+Intermediate Super Class: class ClassC
+Constructors:
+	Name: ClassB
+	Modifier: public
+	Exception thrown: java.lang.Exception
+	Declaring Class: ClassB
+
+
+Interfaces:
+	java.lang.Runnable
+
+
+Fields:
+	Name: val
+	Value: ClassA
+	Modifier: private
+	Type: ClassA
+	Declaring Class: ClassB
+
+	Name: val2
+	Value: ClassA
+	Modifier: private
+	Type: ClassA
+	Declaring Class: ClassB
+
+	Name: val3
+	Value: null
+	Modifier: private
+	Type: ClassA
+	Declaring Class: ClassB
+
+
+Methods:
+	Name: run
+	Modifier: public
+	Return Type: void
+	Declaring Class: ClassB
+
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: ClassB
+
+	Name: func3
+	Modifier: public
+	Return Type: void
+	Parameter types: int
+	Declaring Class: ClassB
+
+
+======================================================
+======================================================
+Running Test: ClassD
+Recursion: false
+Class Name: ClassD
+Declaring Class: null
+Intermediate Super Class: class java.lang.Object
+Constructors:
+	Name: ClassD
+	Modifier: public
+	Declaring Class: ClassD
+
+	Name: ClassD
+	Modifier: public
+	Parameter types: int
+	Declaring Class: ClassD
+
+
+Fields:
+	Name: val
+	Value: ClassA
+	Modifier: private
+	Type: ClassA
+	Declaring Class: ClassD
+
+	Name: val2
+	Value: null
+	Modifier: private static
+	Type: ClassA
+	Declaring Class: ClassD
+
+	Name: val3
+	Value: 32
+	Modifier: private
+	Type: int
+	Declaring Class: ClassD
+
+	Name: vallarray
+	Value: [LClassA;@bda96b
+	Modifier: private
+	Type: [LClassA;
+	Declaring Class: ClassD
+
+
+Methods:
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: ClassD
+
+	Name: getVal3
+	Modifier: public
+	Return Type: int
+	Declaring Class: ClassD
+
+
+======================================================
+======================================================
+Running Test: ClassD
+Recursion: false
+Class Name: ClassD
+Declaring Class: null
+Intermediate Super Class: class java.lang.Object
+Constructors:
+	Name: ClassD
+	Modifier: public
+	Declaring Class: ClassD
+
+	Name: ClassD
+	Modifier: public
+	Parameter types: int
+	Declaring Class: ClassD
+
+
+Fields:
+	Name: val
+	Value: ClassA
+	Modifier: private
+	Type: ClassA
+	Declaring Class: ClassD
+
+	Name: val2
+	Value: null
+	Modifier: private static
+	Type: ClassA
+	Declaring Class: ClassD
+
+	Name: val3
+	Value: 34
+	Modifier: private
+	Type: int
+	Declaring Class: ClassD
+
+	Name: vallarray
+	Value: [LClassA;@23bdb02e
+	Modifier: private
+	Type: [LClassA;
+	Declaring Class: ClassD
+
+
+Methods:
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: ClassD
+
+	Name: getVal3
+	Modifier: public
+	Return Type: int
+	Declaring Class: ClassD
+
+
+======================================================
+======================================================
+Running Test: [LClassB;@431d00cf
+Array Object:
+	Reference: [LClassB;@431d00cf
+	Component Type: ClassB
+
+	Array size: 12
+
+	Element Index: 0
+	Element: Null
+
+	Element Index: 1
+	Element: Null
+
+	Element Index: 2
+	Element: Null
+
+	Element Index: 3
+	Element: Null
+
+	Element Index: 4
+	Element: Null
+
+	Element Index: 5
+	Element: Null
+
+	Element Index: 6
+	Element: Null
+
+	Element Index: 7
+	Element: Null
+
+	Element Index: 8
+	Element: Null
+
+	Element Index: 9
+	Element: Null
+
+	Element Index: 10
+	Element: Null
+
+	Element Index: 11
+	Element: Null
+
+
+======================================================
+======================================================
+Running Test: [[LClassB;@c88a80e
+Array Object:
+	Reference: [[LClassB;@c88a80e
+	Component Type: [LClassB;
+
+	Array size: 12
+
+	Element Index: 0
+	Array Object:
+		Reference: [LClassB;@5fd1358f
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 1
+	Array Object:
+		Reference: [LClassB;@2013706e
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 2
+	Array Object:
+		Reference: [LClassB;@5c3a5635
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 3
+	Array Object:
+		Reference: [LClassB;@79f1e0e0
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 4
+	Array Object:
+		Reference: [LClassB;@76e2d0ab
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 5
+	Array Object:
+		Reference: [LClassB;@24f1c787
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 6
+	Array Object:
+		Reference: [LClassB;@7d628303
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 7
+	Array Object:
+		Reference: [LClassB;@4e877a44
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 8
+	Array Object:
+		Reference: [LClassB;@206c2ea3
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 9
+	Array Object:
+		Reference: [LClassB;@1e69dff6
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 10
+	Array Object:
+		Reference: [LClassB;@38ee9f13
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+	Element Index: 11
+	Array Object:
+		Reference: [LClassB;@3a0db598
+		Component Type: ClassB
+
+		Array size: 12
+
+		Element Index: 0
+		Element: Null
+
+		Element Index: 1
+		Element: Null
+
+		Element Index: 2
+		Element: Null
+
+		Element Index: 3
+		Element: Null
+
+		Element Index: 4
+		Element: Null
+
+		Element Index: 5
+		Element: Null
+
+		Element Index: 6
+		Element: Null
+
+		Element Index: 7
+		Element: Null
+
+		Element Index: 8
+		Element: Null
+
+		Element Index: 9
+		Element: Null
+
+		Element Index: 10
+		Element: Null
+
+		Element Index: 11
+		Element: Null
+
+
+
+
+======================================================
+======================================================
+Running Test: Test String
+Recursion: false
+Class Name: java.lang.String
+Declaring Class: null
+Intermediate Super Class: class java.lang.Object
+Constructors:
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Parameter types: java.nio.charset.Charset
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Exception thrown: java.io.UnsupportedEncodingException
+	Parameter types: [B
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Parameter types: int
+	Parameter types: int
+	Parameter types: java.nio.charset.Charset
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: 
+	Parameter types: int
+	Parameter types: int
+	Parameter types: [C
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: 
+	Parameter types: [C
+	Parameter types: boolean
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: java.lang.StringBuilder
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: java.lang.StringBuffer
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [I
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [C
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Exception thrown: java.io.UnsupportedEncodingException
+	Parameter types: [B
+	Parameter types: int
+	Parameter types: int
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: java.lang.String
+	Modifier: public
+	Parameter types: [B
+	Parameter types: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+
+Interfaces:
+	java.io.Serializable
+
+	java.lang.Comparable
+
+	java.lang.CharSequence
+
+
+Fields:
+	Name: value
+	Value: [C@8cbb423
+	Modifier: private final
+	Type: [C
+	Declaring Class: java.lang.String
+
+	Name: hash
+	Value: 0
+	Modifier: private
+	Type: int
+	Declaring Class: java.lang.String
+
+	Name: serialVersionUID
+	Value: -6849794470754667710
+	Modifier: private static final
+	Type: long
+	Declaring Class: java.lang.String
+
+	Name: serialPersistentFields
+	Value: [Ljava.io.ObjectStreamField;@6099210f
+	Modifier: private static final
+	Type: [Ljava.io.ObjectStreamField;
+	Declaring Class: java.lang.String
+
+	Name: CASE_INSENSITIVE_ORDER
+	Value: java.lang.String$CaseInsensitiveComparator@65499154
+	Modifier: public static final
+	Type: java.util.Comparator
+	Declaring Class: java.lang.String
+
+	Name: HASHING_SEED
+	Value: -728629982
+	Modifier: private static final
+	Type: int
+	Declaring Class: java.lang.String
+
+	Name: hash32
+	Value: 0
+	Modifier: private transient
+	Type: int
+	Declaring Class: java.lang.String
+
+
+Methods:
+	Name: equals
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.Object
+	Declaring Class: java.lang.String
+
+	Name: toString
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: hashCode
+	Modifier: public
+	Return Type: int
+	Declaring Class: java.lang.String
+
+	Name: compareTo
+	Modifier: public volatile
+	Return Type: int
+	Parameter types: java.lang.Object
+	Declaring Class: java.lang.String
+
+	Name: compareTo
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: indexOf
+	Modifier: static
+	Return Type: int
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: indexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: indexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: indexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: indexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: char
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: java.lang.Object
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: boolean
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: [C
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: long
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: float
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: valueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: double
+	Declaring Class: java.lang.String
+
+	Name: hash32
+	Modifier: 
+	Return Type: int
+	Declaring Class: java.lang.String
+
+	Name: checkBounds
+	Modifier: private static
+	Return Type: void
+	Parameter types: [B
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: length
+	Modifier: public
+	Return Type: int
+	Declaring Class: java.lang.String
+
+	Name: isEmpty
+	Modifier: public
+	Return Type: boolean
+	Declaring Class: java.lang.String
+
+	Name: charAt
+	Modifier: public
+	Return Type: char
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: codePointAt
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: codePointBefore
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: codePointCount
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: offsetByCodePoints
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: getChars
+	Modifier: 
+	Return Type: void
+	Parameter types: [C
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: getChars
+	Modifier: public
+	Return Type: void
+	Parameter types: int
+	Parameter types: int
+	Parameter types: [C
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: getBytes
+	Modifier: public
+	Return Type: class [B
+	Exception thrown: java.io.UnsupportedEncodingException
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: getBytes
+	Modifier: public
+	Return Type: void
+	Parameter types: int
+	Parameter types: int
+	Parameter types: [B
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: getBytes
+	Modifier: public
+	Return Type: class [B
+	Parameter types: java.nio.charset.Charset
+	Declaring Class: java.lang.String
+
+	Name: getBytes
+	Modifier: public
+	Return Type: class [B
+	Declaring Class: java.lang.String
+
+	Name: contentEquals
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.CharSequence
+	Declaring Class: java.lang.String
+
+	Name: contentEquals
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.StringBuffer
+	Declaring Class: java.lang.String
+
+	Name: equalsIgnoreCase
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: compareToIgnoreCase
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: regionMatches
+	Modifier: public
+	Return Type: boolean
+	Parameter types: boolean
+	Parameter types: int
+	Parameter types: java.lang.String
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: regionMatches
+	Modifier: public
+	Return Type: boolean
+	Parameter types: int
+	Parameter types: java.lang.String
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: startsWith
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: startsWith
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: endsWith
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: indexOfSupplementary
+	Modifier: private
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOf
+	Modifier: static
+	Return Type: int
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOf
+	Modifier: public
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: lastIndexOfSupplementary
+	Modifier: private
+	Return Type: int
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: substring
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: substring
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: subSequence
+	Modifier: public
+	Return Type: interface java.lang.CharSequence
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: concat
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: replace
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: char
+	Parameter types: char
+	Declaring Class: java.lang.String
+
+	Name: replace
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.lang.CharSequence
+	Parameter types: java.lang.CharSequence
+	Declaring Class: java.lang.String
+
+	Name: matches
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: contains
+	Modifier: public
+	Return Type: boolean
+	Parameter types: java.lang.CharSequence
+	Declaring Class: java.lang.String
+
+	Name: replaceFirst
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.lang.String
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: replaceAll
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.lang.String
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: split
+	Modifier: public
+	Return Type: class [Ljava.lang.String;
+	Parameter types: java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: split
+	Modifier: public
+	Return Type: class [Ljava.lang.String;
+	Parameter types: java.lang.String
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: toLowerCase
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.util.Locale
+	Declaring Class: java.lang.String
+
+	Name: toLowerCase
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: toUpperCase
+	Modifier: public
+	Return Type: class java.lang.String
+	Parameter types: java.util.Locale
+	Declaring Class: java.lang.String
+
+	Name: toUpperCase
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: trim
+	Modifier: public
+	Return Type: class java.lang.String
+	Declaring Class: java.lang.String
+
+	Name: toCharArray
+	Modifier: public
+	Return Type: class [C
+	Declaring Class: java.lang.String
+
+	Name: format
+	Modifier: public static transient
+	Return Type: class java.lang.String
+	Parameter types: java.lang.String
+	Parameter types: [Ljava.lang.Object;
+	Declaring Class: java.lang.String
+
+	Name: format
+	Modifier: public static transient
+	Return Type: class java.lang.String
+	Parameter types: java.util.Locale
+	Parameter types: java.lang.String
+	Parameter types: [Ljava.lang.Object;
+	Declaring Class: java.lang.String
+
+	Name: copyValueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: [C
+	Declaring Class: java.lang.String
+
+	Name: copyValueOf
+	Modifier: public static
+	Return Type: class java.lang.String
+	Parameter types: [C
+	Parameter types: int
+	Parameter types: int
+	Declaring Class: java.lang.String
+
+	Name: intern
+	Modifier: public native
+	Return Type: class java.lang.String
+	Declaring Class: java.lang.String
+
+
+======================================================
