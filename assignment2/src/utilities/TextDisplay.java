@@ -10,6 +10,7 @@ public class TextDisplay
 {
 	private static int DEFAULT_TEXT_WRAP = 2500;	// The default value to wrap around display text.
 	private static String DEFAULT_DELIMINATOR =  "\n";	// The default value to wrap around display text.
+	private static int DEFAULT_DEPTH = 0;;	// The default depth to indent display text.
 	
 	/**
 	 * Method to return wrapped string messages
@@ -29,27 +30,35 @@ public class TextDisplay
 
 	public static void display()
 	{
-		display("\n", DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP);
+		display("", DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP, DEFAULT_DEPTH);
 	}
 	
 	public static void display(String message)
 	{
-		display(message, DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP);
+		display(message, DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP, DEFAULT_DEPTH);
 	}
 	
-	public static void display(String message, String deliminator, int length)
+	public static void display(String message, int depth)
 	{
-		System.out.println(wrapString(message, deliminator, length));   // By not directly calling sysout, we allow the program to be scaled easier later on
+		display(message, DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP, depth);
 	}
 	
-	public static String repeatChar(char c)
+	public static void display(String message, String deliminator, int length, int depth)
+	{
+		System.out.println(repeatChar("\t", depth) + wrapString(message, deliminator, length));   // By not directly calling sysout, we allow the program to be scaled easier later on
+	}
+	
+	public static String repeatChar(String c)
 	{
 		return repeatChar(c, DEFAULT_TEXT_WRAP);
 	}
 	
-	public static String repeatChar(char c, int repetitions)
+	public static String repeatChar(String c, int repetitions)
 	{
-		return String.format(String.format("%%0%dd", repetitions), 0).replace('0',c);
+		if(repetitions == 0)
+			return "";
+		else
+			return String.format(String.format("%%0%dd", repetitions), 0).replaceAll("0",c);
 	}
 	
 	public static void alert(String message)
@@ -64,8 +73,8 @@ public class TextDisplay
 	
 	public static void alert(String message, int repetitions)
 	{
-		display(repeatChar('-', repetitions));
+		display(repeatChar("-", repetitions));
 		display(message);
-		display(repeatChar('-', repetitions));
+		display(repeatChar("-", repetitions));
 	}
 }
