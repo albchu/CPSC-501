@@ -39,11 +39,11 @@ public class Inspector
 	{
 		if(ObjClass.isArray())
 			inspectArray(origInstance, recursive, depth);
+		else if (ObjClass.isPrimitive())
+			inspectPrimitive(origInstance, depth);
 		else
 			inspectObject(origInstance, ObjClass, recursive, depth);
 	}
-	
-	
 	
 	/**
 	 * Assumption: origInstance is an array
@@ -54,15 +54,18 @@ public class Inspector
 	{
 		display("Array Object:", depth);
 		display("Reference: " + origInstance, depth + 1);
+		Class<?> componentType = origInstance.getClass().getComponentType();
+		display("Component Type: " + componentType.getName(), depth + 1);
 		display();
-		display("Array size: " + ((Object[]) origInstance).length, depth + 1);
+		int arrayLength = Array.getLength(origInstance);
+		display("Array size: " + arrayLength, depth + 1);
 		display();
-		for (int i = 0; i < ((Object[]) origInstance).length ; i++)
+		for (int i = 0; i < arrayLength ; i++)
 		{
 			display("Element Index: " + i, depth + 1);
-			Object elementObj = ((Object[]) origInstance)[i];
+			Object elementObj = Array.get(origInstance, i);
 			if (elementObj != null)
-				inspect(elementObj, elementObj.getClass(), recursive, depth + 1);
+				inspect(elementObj, componentType, recursive, depth + 1);
 			else
 				display("Element: Null", depth + 1);
 			display();
@@ -95,7 +98,27 @@ public class Inspector
 				inspect(origInstance, superClass, recursive, depth + 1);
 			}
 		}
-		
+	}
+	
+	/**
+	 * Assumption: obj is primitive
+	 * If the object is a primitive type, recursively parsing will only result in volitile low level values of little usefulness
+	 * Only the value is of importance at the primitive level
+	 * This method will only print out the value field of the primitive
+	 * @param origInstance
+	 */
+	private void inspectPrimitive(Object obj, int depth)
+	{
+		try
+		{
+			Field valueField = obj.getClass().getDeclaredField("value");
+			valueField.setAccessible(true);
+			display("Primitive Value: " + valueField.get(obj).toString(), depth);
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	private void inspectConstructors(Class<?> objClass, int depth)
@@ -105,7 +128,7 @@ public class Inspector
 		else return;
 		for (Constructor<?> constructor : objClass.getDeclaredConstructors())
 		{
-			constructor.setAccessible(true);
+//			constructor.setAccessible(true);
 			display("Name: " + constructor.getName(), depth + 1);
 			display("Modifier: " + Modifier.toString(constructor.getModifiers()), depth + 1);
 			for (Class<?> exception : constructor.getExceptionTypes())
@@ -164,12 +187,13 @@ public class Inspector
 			display("Field Class Name: " + field.getName(), depth + 1);
 				try
 				{
-					if(field.get(obj) == null)
+					Object fieldObj = field.get(obj);
+					if(fieldObj == null)
 						display("No value given", depth + 1);
 					else
 					{
 						Inspector newInspect = new Inspector(); // Needs a new instance otherwise we may cut a superclass unexpectedly
-						newInspect.inspect(field.get(obj), field.get(obj).getClass(), recursive, depth + 1); 
+						newInspect.inspect(fieldObj, fieldObj.getClass(), recursive, depth + 1); 
 					}
 				} catch (Exception exp)
 				{
