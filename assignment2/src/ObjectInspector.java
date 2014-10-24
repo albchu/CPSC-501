@@ -1,20 +1,4 @@
-/*==========================================================================
-File: ObjectInspector.java
-Purpose:Demo Object inspector for the Asst2TestDriver
 
-Location: University of Calgary, Alberta, Canada
-Created By: Jordan Kidney
-Created on:  Oct 23, 2005
-Last Updated: Oct 23, 2005
-
-***********************************************************************
-If you are going to reproduce this code in any way for your asignment 
-rember to include my name at the top of the file toindicate where you
-got the original code from
-***********************************************************************
-
-
-========================================================================*/
 
 import java.util.*;
 import java.lang.reflect.*;

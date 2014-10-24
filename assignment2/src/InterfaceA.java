@@ -1,3 +1,4 @@
+
 public interface InterfaceA extends InterfaceB
 {
    

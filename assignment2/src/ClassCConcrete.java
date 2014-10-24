@@ -1,3 +1,4 @@
+
 public class ClassCConcrete extends ClassD implements InterfaceA
 {
 
