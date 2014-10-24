@@ -1,5 +1,6 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -17,18 +18,44 @@ public class Inspector
 		System.out.println("Intermediate Super Class: " + ObjClass.getSuperclass());
 
 
-		for (Method method : ObjClass.getMethods())
-		{
-
-		}
 
 		// inspect the current class
+		inspectConstructors(ObjClass);
+		inspectMethods(ObjClass);
 		inspectInterfaces(ObjClass);
 //		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
 			inspectFieldClasses(obj, ObjClass, objectsToInspect, recursive);
 
+	}
+	
+	private void inspectConstructors(Class<?> objClass)
+	{
+		for (Method method : objClass.getMethods())
+		{
+			System.out.println("Method Name: " + method.getName());
+			System.out.println("\tModifier: " + Modifier.toString(method.getModifiers()));
+			System.out.println("\tReturn Type: " + method.getReturnType());
+			for (Class exception : method.getExceptionTypes())
+				System.out.println("\tException thrown: " + exception.getName());
+			for (Class<?> paramTypes : method.getParameterTypes())
+				System.out.println("\tParameter types: " + paramTypes.getName());
+		}
+	}
+	
+	private void inspectMethods(Class<?> objClass)
+	{
+		for (Method method : objClass.getMethods())
+		{
+			System.out.println("Method Name: " + method.getName());
+			System.out.println("\tModifier: " + Modifier.toString(method.getModifiers()));
+			System.out.println("\tReturn Type: " + method.getReturnType());
+			for (Class<?> exception : method.getExceptionTypes())
+				System.out.println("\tException thrown: " + exception.getName());
+			for (Class<?> paramTypes : method.getParameterTypes())
+				System.out.println("\tParameter types: " + paramTypes.getName());
+		}
 	}
 
 	private void inspectInterfaces(Class<?> objClass)
