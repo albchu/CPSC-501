@@ -1,7 +1,10 @@
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+/**
+ * CPSC 501 Assignment 2
+ * By Albert Chu
+ * UCID: 10059388
+ * Date: Oct 24th 2014
+ */
+import java.lang.reflect.*;
 import java.util.*;
 
 import static utilities.TextDisplay.*;
@@ -34,14 +37,32 @@ public class Inspector
 	 */
 	public void inspect(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
+		if(ObjClass.isArray())
+			inspectArray(origInstance, recursive);
+		else
+			inspectObject(origInstance, ObjClass, recursive, depth);
+	}
+	
+	
+	
+	/**
+	 * Assumption: this 
+	 * @param obj
+	 */
+	private void inspectArray(Object origInstance, boolean recursive)
+	{
+		System.out.println("Yay you got an array");
+	}
+	
+	private void inspectObject(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
+	{
 		List<Field> objectsToInspect = new ArrayList<Field>();
 		Class<?> superClass = ObjClass.getSuperclass();
 		inspectedClasses.add(ObjClass);
-		
-		display("Class Name: " + ObjClass.getName(), depth);
 		display("Recursion: " + recursive, depth);
+		display("Class Name: " + ObjClass.getName(), depth);
 		display("Declaring Class: " + ObjClass.getDeclaringClass(), depth);
-		display("Intermediate Super Class: " + ObjClass.getSuperclass(), depth);
+		display("Intermediate Super Class: " + superClass, depth);
 		
 		// inspect the current class
 		inspectConstructors(ObjClass, depth);
@@ -58,6 +79,7 @@ public class Inspector
 				inspect(origInstance, superClass, recursive, depth + 1);
 			}
 		}
+		
 	}
 	
 	private void inspectConstructors(Class<?> objClass, int depth)
@@ -67,7 +89,7 @@ public class Inspector
 		else return;
 		for (Constructor<?> constructor : objClass.getDeclaredConstructors())
 		{
-			//constructor.setAccessible(true);
+			constructor.setAccessible(true);
 			display("Name: " + constructor.getName(), depth + 1);
 			display("Modifier: " + Modifier.toString(constructor.getModifiers()), depth + 1);
 			for (Class<?> exception : constructor.getExceptionTypes())

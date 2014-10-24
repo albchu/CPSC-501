@@ -88,11 +88,11 @@ public class Asst2TestDriver
 //			driver.runTest( new ClassA(12) );
 //			driver.runTest( new ClassB() );
 //			driver.runTest( new ClassCConcrete() );
-			driver.runTest( new ClassCConcrete(4,5) );
+//			driver.runTest( new ClassCConcrete(4,5) );
 //			driver.runTest( new ClassD(32) );
 //			driver.runTest( new ClassD() );
 //			driver.runTest( new ClassB[12] );
-//			driver.runTest( new ClassB[12][12] );	
+			driver.runTest( new ClassB[12][12] );	
 //			driver.runTest( "Test String" );
 		    }
 		catch(Exception e)
