@@ -2,6 +2,7 @@ public abstract class ClassC extends ClassD implements InterfaceA
 {
 
     public ClassC(){ }
+    private ClassC(int r 	){ }
     public ClassC(int a,int b){ val3= new ClassA(a); val4 = new ClassA(b); }
 
     public void run() { }
