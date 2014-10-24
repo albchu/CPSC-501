@@ -14,6 +14,10 @@ public class ClassCConcrete extends ClassD implements InterfaceA
     {
     }
     
+    private int func2private(String s)throws Exception, ArithmeticException , IllegalMonitorStateException 
+    {
+    return 1;
+    }
     public int func2(String s)throws Exception, ArithmeticException , IllegalMonitorStateException 
     {
 	return 1;

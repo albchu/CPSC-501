@@ -1,3 +1,4 @@
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -8,8 +9,8 @@ public class Inspector
 {
 	public void inspect(Object obj, boolean recursive)
 	{
-		Vector objectsToInspect = new Vector();
-		Class ObjClass = obj.getClass();
+		Vector<Field> objectsToInspect = new Vector();
+		Class<?> ObjClass = obj.getClass();
 
 		System.out.println("inside inspector: " + obj + " (recursive = " + recursive + ")");
 
@@ -20,10 +21,10 @@ public class Inspector
 
 
 		// inspect the current class
-		inspectConstructors(ObjClass);
-		inspectMethods(ObjClass);
-		inspectInterfaces(ObjClass);
-//		inspectFields(obj, ObjClass, objectsToInspect);
+//		inspectConstructors(ObjClass);
+//		inspectMethods(ObjClass);
+//		inspectInterfaces(ObjClass);
+		inspectFields(obj, ObjClass, objectsToInspect);
 
 		if (recursive)
 			inspectFieldClasses(obj, ObjClass, objectsToInspect, recursive);
@@ -32,22 +33,23 @@ public class Inspector
 	
 	private void inspectConstructors(Class<?> objClass)
 	{
-		for (Method method : objClass.getMethods())
+		for (Constructor<?> constructor : objClass.getDeclaredConstructors())
 		{
-			System.out.println("Method Name: " + method.getName());
-			System.out.println("\tModifier: " + Modifier.toString(method.getModifiers()));
-			System.out.println("\tReturn Type: " + method.getReturnType());
-			for (Class exception : method.getExceptionTypes())
+			constructor.setAccessible(true);
+			System.out.println("Constructor Name: " + constructor.getName());
+			System.out.println("\tModifier: " + Modifier.toString(constructor.getModifiers()));
+			for (Class exception : constructor.getExceptionTypes())
 				System.out.println("\tException thrown: " + exception.getName());
-			for (Class<?> paramTypes : method.getParameterTypes())
+			for (Class<?> paramTypes : constructor.getParameterTypes())
 				System.out.println("\tParameter types: " + paramTypes.getName());
 		}
 	}
 	
 	private void inspectMethods(Class<?> objClass)
 	{
-		for (Method method : objClass.getMethods())
+		for (Method method : objClass.getDeclaredMethods())
 		{
+			method.setAccessible(true);
 			System.out.println("Method Name: " + method.getName());
 			System.out.println("\tModifier: " + Modifier.toString(method.getModifiers()));
 			System.out.println("\tReturn Type: " + method.getReturnType());
@@ -89,26 +91,28 @@ public class Inspector
 		}
 	}
 
-	private void inspectFields(Object obj, Class ObjClass, Vector objectsToInspect)
+	private void inspectFields(Object obj, Class<?> ObjClass, Vector<Field> objectsToInspect)
 
 	{
 
-		if (ObjClass.getDeclaredFields().length >= 1)
+		for (Field field : ObjClass.getDeclaredFields())
 		{
-			Field f = ObjClass.getDeclaredFields()[0];
+			field.setAccessible(true);
 
-			f.setAccessible(true);
-
-			if (!f.getType().isPrimitive())
-				objectsToInspect.addElement(f);
-
+			if (!field.getType().isPrimitive())
+				objectsToInspect.addElement(field);
+			
+			System.out.println("Field Name: " + field.getName());
+					
 			try
 			{
 
-				System.out.println("Field: " + f.getName() + " = " + f.get(obj));
+				System.out.println("\tValue: " + field.get(obj));
 			} catch (Exception e)
 			{
 			}
+			System.out.println("\tModifier: " + Modifier.toString(field.getModifiers()));
+			System.out.println("\tType: " + field.getType().getName());
 		}
 
 		if (ObjClass.getSuperclass() != null)

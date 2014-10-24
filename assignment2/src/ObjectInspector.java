@@ -63,7 +63,7 @@ public class ObjectInspector
 	    }
     }
     //-----------------------------------------------------------
-    private void inspectFields(Object obj,Class ObjClass,Vector objectsToInspect)
+    private void inspectFields(Object obj,Class ObjClass, Vector objectsToInspect)
   
     {
 	
