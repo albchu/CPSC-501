@@ -32,9 +32,9 @@ public class Inspector
 	 * @param ObjClass
 	 * @param recursive
 	 */
-	public void inspect(Object origInstance, Class ObjClass, boolean recursive, int depth)
+	public void inspect(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
-		Vector<Field> objectsToInspect = new Vector();
+		List<Field> objectsToInspect = new ArrayList<Field>();
 		Class<?> superClass = ObjClass.getSuperclass();
 		inspectedClasses.add(ObjClass);
 		
@@ -75,7 +75,7 @@ public class Inspector
 			//constructor.setAccessible(true);
 			display("Name: " + constructor.getName(), depth + 1);
 			display("Modifier: " + Modifier.toString(constructor.getModifiers()), depth + 1);
-			for (Class exception : constructor.getExceptionTypes())
+			for (Class<?> exception : constructor.getExceptionTypes())
 				display("Exception thrown: " + exception.getName(), depth + 1);
 			for (Class<?> paramTypes : constructor.getParameterTypes())
 				display("Parameter types: " + paramTypes.getName(), depth + 1);
@@ -128,16 +128,17 @@ public class Inspector
 	}
 
 	// -----------------------------------------------------------
-	private void inspectFieldClasses(Object obj, Class ObjClass, Vector objectsToInspect, boolean recursive, int depth)
+	private void inspectFieldClasses(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, boolean recursive, int depth)
 	{
 
 		if (objectsToInspect.size() > 0)
 			display("FIELD CLASSES:", depth);
 		else return;
-		Enumeration e = objectsToInspect.elements();
-		while (e.hasMoreElements())
+//		Enumeration e = objectsToInspect.elements();
+//		while (e.hasMoreElements())
+		for (Field f : objectsToInspect)
 		{
-			Field f = (Field) e.nextElement();
+//			Field f = (Field) e.nextElement();
 			f.setAccessible(true);
 			display("Field Class Name: " + f.getName(), depth + 1);
 				try
@@ -159,7 +160,7 @@ public class Inspector
 		display();
 	}
 
-	private void inspectFields(Object obj, Class<?> ObjClass, Vector<Field> objectsToInspect, int depth)
+	private void inspectFields(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, int depth)
 	{
 		if (ObjClass.getDeclaredFields().length > 0)
 			display("Fields:", depth);
@@ -168,7 +169,7 @@ public class Inspector
 		{
 
 			if (!field.getType().isPrimitive())
-				objectsToInspect.addElement(field);
+				objectsToInspect.add(field);
 			
 			display("Name: " + field.getName(), depth + 1);
 			field.setAccessible(true);
