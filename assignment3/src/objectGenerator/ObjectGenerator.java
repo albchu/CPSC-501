@@ -15,7 +15,7 @@ import utilities.Utilities;
 
 public class ObjectGenerator {
 	
-	private List<String> YesNoMenu;
+
 	private List<String> ObjectMenu;
 	private List<String> ObjectGenerationMenu;
 	private Scanner userInput = new Scanner(System.in);
@@ -23,8 +23,7 @@ public class ObjectGenerator {
 
 	public ObjectGenerator() {
 
-		YesNoMenu = Utilities
-				.readToList("src/objectGenerator/assets/YesNo.txt");
+
 		ObjectMenu = Utilities
 				.readToList("src/objectGenerator/assets/ObjectMenu.txt");
 		ObjectGenerationMenu = Utilities
@@ -32,6 +31,10 @@ public class ObjectGenerator {
 		// SimplePrimitiveText =
 		// Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		objList = new ArrayList<Object>();
+	}
+
+	public List<Object> getObjList() {
+		return objList;
 	}
 
 	public void objGeneratorMenu() {
@@ -255,25 +258,5 @@ public class ObjectGenerator {
 		return fieldList;
 	}
 
-	public void serialize() {
-		TextDisplay.display("Would you like to serialize objects?");
-		switch (Driver.menuSelect(userInput, YesNoMenu)) {
-		case (1):
-			serializeList(objList);
-			break;
-		case (2):
-			System.exit(0);
-			break;
-		}
-	}
-
-	/**
-	 * Serializes all elements in the parameter list
-	 * 
-	 * @param list
-	 */
-	public void serializeList(List<Object> list) {
-		TextDisplay.display("This isnt implemented");
-	}
 
 }

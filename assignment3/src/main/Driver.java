@@ -10,6 +10,7 @@ import utilities.Utilities;
 
 public class Driver {
 	private List<String> mainMenuText;
+	private List<String> YesNoMenu;
 	private Scanner userInput = new Scanner(System.in);
 	private ObjectGenerator objGen;
 	
@@ -19,6 +20,8 @@ public class Driver {
 	}
 	public Driver()
 	{
+		YesNoMenu = Utilities
+				.readToList("src/objectGenerator/assets/YesNo.txt");
 		mainMenuText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		objGen = new ObjectGenerator();
 	}
@@ -35,7 +38,7 @@ public class Driver {
 			TextDisplay.display(TextDisplay.repeatChar("#", 50));
 			break;
 		case (3):
-			TextDisplay.display("PLACEHOLDER FOR SERIALIZE AND SEND");
+			serialize();
 			break;
 
 		case (4):
@@ -43,6 +46,27 @@ public class Driver {
 			System.exit(0);
 		}
 		mainMenu();
+	}
+	
+	/**
+	 * Serializes all elements in the parameter list
+	 * 
+	 * @param list
+	 */
+	public void serializeList(List<Object> list) {
+		TextDisplay.display("This isnt implemented");
+	}
+
+	public void serialize() {
+		TextDisplay.display("Would you like to serialize objects?");
+		switch (Driver.menuSelect(userInput, YesNoMenu)) {
+		case (1):
+			serializeList(objGen.getObjList());
+			break;
+		case (2):
+			System.exit(0);
+			break;
+		}
 	}
 	
 	/**
