@@ -73,8 +73,7 @@ public class ObjectGenerator {
 			objGeneratorMenu();
 			break;
 		case (2):
-			TextDisplay
-					.display("Generated objects: " + createdObjects().size());
+			TextDisplay.display("Generated objects: " + createdObjects().size());
 			TextDisplay.display(createdObjects());
 			break;
 		case (3):
@@ -86,18 +85,6 @@ public class ObjectGenerator {
 			System.exit(0);
 		}
 		mainMenu();
-	}
-
-	public Object createSimpleObject() {
-		Object obj = new SimpleObjects();
-		setFields(obj);
-		return obj;
-	}
-
-	public Object createSimplePrimitive() {
-		Object obj = new SimpleInts();
-		setFields(obj);
-		return obj;
 	}
 
 	public void setFields(Object obj) {
@@ -126,22 +113,51 @@ public class ObjectGenerator {
 		Class<?> fieldType = field.getType();
 		TextDisplay.display("You have selected field: " + field.getName());
 		TextDisplay.display("The type is: " + fieldType.getName());
-		if (fieldType.equals(int.class)) {
+		if (fieldType.isArray())
+		{
+			if(fieldType.isPrimitive())
+				System.out.println("THIS IS PRIMITIVE ARRAY");
+			else
+				System.out.println("This is not primitive array");
+		}
+		else if (fieldType.equals(int.class)) {
 			setIntField(obj, fieldIndex);
-		} else if (fieldType.equals(Object.class)) {
+		} 
+		else if (fieldType.equals(Object.class)) {
 			TextDisplay.display("Please select what object to choose:");
 			switch (menuSelect(ObjectMenu)) {
 			case (1):
-				mainMenu();
+				objGeneratorMenu();
 				break;
 			case (2):
 				setIntField(obj, fieldIndex);
 				break;
 			case (3):
-				menuSelect(createdObjects());
+				Object value = objList.get(menuSelect(createdObjects()) - 1);
+				setObjField(obj, fieldIndex, value);
 				break;
 			}
 		}
+	}
+	
+	public void setObjField(Object obj, int fieldIndex, Object value) {
+		TextDisplay.display("Please enter an int to set the field:");
+		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
+		Class<?> fieldType = field.getType();
+//		if (!fieldType.equals(value.getClass()))
+//			throw new RuntimeException("Cant set " + fieldType + " field to " + value.getClass() + " object");
+
+		field.setAccessible(true);
+		
+		try {
+			field.set(obj, value);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		TextDisplay.display("Successfully set field: " + field.getName()
+				+ " to " + value);
 	}
 
 	public void setIntField(Object obj, int fieldIndex) {
@@ -178,8 +194,9 @@ public class ObjectGenerator {
 	 */
 	public List<String> createdObjects() {
 		List<String> createdObjectClassNames = new ArrayList<String>();
+		int i = 1;
 		for (Object obj : objList)
-			createdObjectClassNames.add(obj.toString());
+			createdObjectClassNames.add(i++ + ") " + obj.toString());
 		return createdObjectClassNames;
 	}
 
@@ -190,18 +207,6 @@ public class ObjectGenerator {
 			fieldList.add((++i) + ") " + field.getName());
 		return fieldList;
 	}
-
-	// public void retry() {
-	// TextDisplay.display("Would you like to create another object?");
-	// switch (menuSelect(RetryText)) {
-	// case (1):
-	// objGeneratorMenu();
-	// break;
-	// case (2):
-	// serialize();
-	// break;
-	// }
-	// }
 
 	public void serialize() {
 		TextDisplay.display("Would you like to serialize objects?");
