@@ -108,38 +108,49 @@ public class ObjectGenerator {
 		Class<?> fieldType = field.getType();
 		TextDisplay.display("You have selected field: " + field.getName());
 		TextDisplay.display("The type is: " + fieldType.getName());
-		int input = 0;
 		if (fieldType.equals(int.class)) {
-			TextDisplay.display("Please enter an int to set the field:");
-			try {
-				input = userInput.nextInt();
-			} catch (InputMismatchException e) {
-				TextDisplay.display("Invalid selection, try again.");
-				userInput.next();
-				setField(obj, fieldIndex);
-			}
-			field.setAccessible(true);
-			
-			try {
-				field.set(obj, input);
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-			TextDisplay.display("Successfully set field: " + field.getName() + " to " + input);
+			setIntField(obj, fieldIndex);
 		} else if (fieldType.equals(Object.class))
 		{
 			TextDisplay.display("Please select what object to choose:");
 			switch (menuSelect(ObjectMenu)) {
 			case (1):
 				mainMenu();
-			break;
+				break;
 			case (2):
+				setIntField(obj, fieldIndex);
+				break;
+			case (3):
 				menuSelect(createdObjects());
-			break;
+				break;
 			}
 		}
+	}
+	
+	public void setIntField(Object obj, int fieldIndex)
+	{
+		TextDisplay.display("Please enter an int to set the field:");
+		int input = 0;
+		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
+		Class<?> fieldType = field.getType();
+		if (!fieldType.equals(int.class) && !fieldType.equals(Object.class)) throw new RuntimeException("Cant set non int field to int");
+		try {
+			input = userInput.nextInt();
+		} catch (InputMismatchException e) {
+			TextDisplay.display("Invalid selection, try again.");
+			userInput.next();
+			setField(obj, fieldIndex);
+		}
+		field.setAccessible(true);
+		
+		try {
+			field.set(obj, input);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		TextDisplay.display("Successfully set field: " + field.getName() + " to " + input);
 	}
 
 	/**
