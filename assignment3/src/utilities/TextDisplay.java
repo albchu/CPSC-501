@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.List;
+
 
 /**
  * Class of static methods to hold text display functionality
@@ -37,6 +39,13 @@ public class TextDisplay
 	{
 		display(message, DEFAULT_DELIMINATOR, DEFAULT_TEXT_WRAP, DEFAULT_DEPTH);
 	}
+	
+	public static void display(List<String> messageList)
+	{
+		for (String line : messageList)
+			display(line);
+	}
+	
 	
 	public static void display(String message, int depth)
 	{

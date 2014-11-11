@@ -35,41 +35,59 @@ public class ObjectGenerator {
 	public void objGeneratorMenu() {
 		switch (menuSelect(ObjectGenerationMenu)) {
 		case (1):
-			objList.add(createSimplePrimitive());
+			SimpleInts simpleInts = new SimpleInts();
+			objList.add(simpleInts);
+			setFields(simpleInts);
 			break;
 		case (2):
-			objList.add(createSimpleObject());
+			SimpleObjects simpleObjs = new SimpleObjects();
+			objList.add(simpleObjs);
+			setFields(simpleObjs);
 			break;
 		case (3):
+			ArraysOfPrimitive arraysOfPrimitive = new ArraysOfPrimitive();
+			objList.add(arraysOfPrimitive);
+			setFields(arraysOfPrimitive);
+			break;
 
 		case (4):
+			ArrayOfObjectRefs arrayOfObjectRefs = new ArrayOfObjectRefs();
+			objList.add(arrayOfObjectRefs);
+			setFields(arrayOfObjectRefs);
+			break;
 
 		case (5):
+			CollectionObjects collectionObjects = new CollectionObjects();
+			objList.add(collectionObjects);
+			setFields(collectionObjects);
+			break;
 
 		case (6):
 			mainMenu();
 		}
 	}
-	
+
 	public void mainMenu() {
 		switch (menuSelect(mainMenuText)) {
 		case (1):
 			objGeneratorMenu();
-		break;
+			break;
 		case (2):
-			TextDisplay.display("PLACEHOLDER FOR VIEW OBJS");
-		break;
+			TextDisplay
+					.display("Generated objects: " + createdObjects().size());
+			TextDisplay.display(createdObjects());
+			break;
 		case (3):
 			TextDisplay.display("PLACEHOLDER FOR SERIALIZE AND SEND");
-		break;
-			
+			break;
+
 		case (4):
 			TextDisplay.display("Now terminating program");
 			System.exit(0);
 		}
 		mainMenu();
 	}
-	
+
 	public Object createSimpleObject() {
 		Object obj = new SimpleObjects();
 		setFields(obj);
@@ -110,8 +128,7 @@ public class ObjectGenerator {
 		TextDisplay.display("The type is: " + fieldType.getName());
 		if (fieldType.equals(int.class)) {
 			setIntField(obj, fieldIndex);
-		} else if (fieldType.equals(Object.class))
-		{
+		} else if (fieldType.equals(Object.class)) {
 			TextDisplay.display("Please select what object to choose:");
 			switch (menuSelect(ObjectMenu)) {
 			case (1):
@@ -126,14 +143,14 @@ public class ObjectGenerator {
 			}
 		}
 	}
-	
-	public void setIntField(Object obj, int fieldIndex)
-	{
+
+	public void setIntField(Object obj, int fieldIndex) {
 		TextDisplay.display("Please enter an int to set the field:");
 		int input = 0;
 		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
 		Class<?> fieldType = field.getType();
-		if (!fieldType.equals(int.class) && !fieldType.equals(Object.class)) throw new RuntimeException("Cant set non int field to int");
+		if (!fieldType.equals(int.class) && !fieldType.equals(Object.class))
+			throw new RuntimeException("Cant set non int field to int");
 		try {
 			input = userInput.nextInt();
 		} catch (InputMismatchException e) {
@@ -142,7 +159,7 @@ public class ObjectGenerator {
 			setField(obj, fieldIndex);
 		}
 		field.setAccessible(true);
-		
+
 		try {
 			field.set(obj, input);
 		} catch (IllegalArgumentException e) {
@@ -150,21 +167,22 @@ public class ObjectGenerator {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		TextDisplay.display("Successfully set field: " + field.getName() + " to " + input);
+		TextDisplay.display("Successfully set field: " + field.getName()
+				+ " to " + input);
 	}
 
 	/**
 	 * Returns a list of all the objects created
+	 * 
 	 * @return
 	 */
-	public List<String> createdObjects()
-	{
+	public List<String> createdObjects() {
 		List<String> createdObjectClassNames = new ArrayList<String>();
-		for(Object obj : objList)
+		for (Object obj : objList)
 			createdObjectClassNames.add(obj.toString());
 		return createdObjectClassNames;
 	}
-		
+
 	public List<String> getFieldList(Object obj) {
 		List<String> fieldList = new ArrayList<String>();
 		int i = 0;
@@ -173,17 +191,17 @@ public class ObjectGenerator {
 		return fieldList;
 	}
 
-//	public void retry() {
-//		TextDisplay.display("Would you like to create another object?");
-//		switch (menuSelect(RetryText)) {
-//		case (1):
-//			objGeneratorMenu();
-//			break;
-//		case (2):
-//			serialize();
-//			break;
-//		}
-//	}
+	// public void retry() {
+	// TextDisplay.display("Would you like to create another object?");
+	// switch (menuSelect(RetryText)) {
+	// case (1):
+	// objGeneratorMenu();
+	// break;
+	// case (2):
+	// serialize();
+	// break;
+	// }
+	// }
 
 	public void serialize() {
 		TextDisplay.display("Would you like to serialize objects?");
@@ -213,8 +231,7 @@ public class ObjectGenerator {
 	 * @return
 	 */
 	public int menuSelect(List<String> menuList) {
-		for (String line : menuList)
-			TextDisplay.display(line);
+		TextDisplay.display(menuList);
 		int input = -1;
 		do {
 			TextDisplay.display("Please input a valid entry:");
