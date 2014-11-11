@@ -1,22 +1,26 @@
 package objectGenerator;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import objectGenerator.templates.SimpleInts;
 import utilities.TextDisplay;
 import utilities.Utilities;
 
 public class ObjectGenerator {
 	private List<String> mainMenuText;
 	private List<String> RetryText;
+	private List<String> SimplePrimitiveText;
 	private Scanner userInput = new Scanner(System.in);
 	private List<Object> objList;
 
 	public ObjectGenerator() {
 		mainMenuText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		RetryText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
+//		SimplePrimitiveText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		objList = new ArrayList<Object>();
 	}
 
@@ -26,7 +30,7 @@ public class ObjectGenerator {
 			objList.add(createSimplePrimitive());
 			break;
 		case (2):
-
+			
 		case (3):
 
 		case (4):
@@ -39,10 +43,41 @@ public class ObjectGenerator {
 	
 	public Object createSimplePrimitive()
 	{
-		Object obj = null;
+		Object obj = new SimpleInts();
+		setFields(obj);
 		return obj;
 	}
 
+	public void setFields(Object obj)
+	{
+		TextDisplay.display("Field names");
+		List<String> fieldList = getFieldList(obj);
+		fieldList.add((fieldList.size()) + ") Exit");
+		int selection = menuSelect(fieldList);
+		if(selection > 0 && selection <= fieldList.size())
+			setField(obj, selection - 1);
+	}
+	
+	/**
+	 * Allows the user to set a specific field
+	 * @param obj
+	 * @param fieldIndex
+	 */
+	public void setField(Object obj, int fieldIndex)
+	{
+		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
+		TextDisplay.display("You have selected field: " + field.getName());
+	}
+	
+	public  List<String> getFieldList(Object obj)
+	{
+		List<String> fieldList = new ArrayList<String>();
+		int i = 0;
+		for (Field field : obj.getClass().getDeclaredFields())
+			fieldList.add((++i) + ") " + field.getName());
+		return fieldList;
+	}
+	
 	public void retry()
 	{
 		TextDisplay.display("Would you like to create another object?");
