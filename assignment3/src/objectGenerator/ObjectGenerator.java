@@ -8,12 +8,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import main.Driver;
 import objectGenerator.templates.*;
 import utilities.TextDisplay;
 import utilities.Utilities;
 
 public class ObjectGenerator {
-	private List<String> mainMenuText;
+	
 	private List<String> YesNoMenu;
 	private List<String> ObjectMenu;
 	private List<String> ObjectGenerationMenu;
@@ -21,8 +22,7 @@ public class ObjectGenerator {
 	private List<Object> objList;
 
 	public ObjectGenerator() {
-		mainMenuText = Utilities
-				.readToList("src/objectGenerator/assets/MainMenuText.txt");
+
 		YesNoMenu = Utilities
 				.readToList("src/objectGenerator/assets/YesNo.txt");
 		ObjectMenu = Utilities
@@ -35,7 +35,7 @@ public class ObjectGenerator {
 	}
 
 	public void objGeneratorMenu() {
-		switch (menuSelect(ObjectGenerationMenu)) {
+		switch (Driver.menuSelect(userInput, ObjectGenerationMenu)) {
 		case (1):
 			SimpleInts simpleInts = new SimpleInts();
 			objList.add(simpleInts);
@@ -65,29 +65,10 @@ public class ObjectGenerator {
 			break;
 
 		case (6):
-			mainMenu();
+			return;
 		}
 	}
 
-	public void mainMenu() {
-		switch (menuSelect(mainMenuText)) {
-		case (1):
-			objGeneratorMenu();
-			break;
-		case (2):
-			TextDisplay.display("Generated objects: " + createdObjects().size());
-			TextDisplay.display(createdObjects());
-			break;
-		case (3):
-			TextDisplay.display("PLACEHOLDER FOR SERIALIZE AND SEND");
-			break;
-
-		case (4):
-			TextDisplay.display("Now terminating program");
-			System.exit(0);
-		}
-		mainMenu();
-	}
 
 	public void setFields(Object obj) {
 		TextDisplay.display("Field names");
@@ -95,7 +76,7 @@ public class ObjectGenerator {
 		fieldList.add((fieldList.size() + 1) + ") Exit");
 		int selection = -1;
 		while (selection != (fieldList.size() + 1)) {
-			selection = menuSelect(fieldList);
+			selection = Driver.menuSelect(userInput, fieldList);
 			if (selection > 0 && selection <= fieldList.size() - 1)
 				setField(obj, selection - 1);
 			else
@@ -118,7 +99,7 @@ public class ObjectGenerator {
 		if (fieldType.isArray())
 		{
 			TextDisplay.display("Please give index of array element to update: ");
-			int arrayIndex = getNextInt();
+			int arrayIndex = Driver.getNextInt(userInput);
 			setArrayElements(obj, fieldIndex, arrayIndex );
 		}
 		else if (fieldType.equals(int.class)) {
@@ -126,7 +107,7 @@ public class ObjectGenerator {
 		} 
 		else if (fieldType.equals(Object.class)) {
 			TextDisplay.display("Please select what object to choose:");
-			switch (menuSelect(ObjectMenu)) {
+			switch (Driver.menuSelect(userInput, ObjectMenu)) {
 			case (1):
 				objGeneratorMenu();
 				break;
@@ -134,7 +115,7 @@ public class ObjectGenerator {
 				setIntField(obj, fieldIndex);
 				break;
 			case (3):
-				Object value = objList.get(menuSelect(createdObjects()) - 1);
+				Object value = objList.get(Driver.menuSelect(userInput, createdObjects()) - 1);
 				setObjField(obj, fieldIndex, value);
 				break;
 			}
@@ -163,7 +144,7 @@ public class ObjectGenerator {
 				
 				int input = 0;
 				TextDisplay.display("This is a primitive array, please enter an int value for the array");
-				input = getNextInt();
+				input = Driver.getNextInt(userInput);
 				
 				try {
 					setArrayValue.invoke(obj, input, arrayIndex);
@@ -189,7 +170,7 @@ public class ObjectGenerator {
 					e1.printStackTrace();
 				}
 				TextDisplay.display("Please select one of objects from list to assign to array index");
-				Object value = objList.get(menuSelect(createdObjects()) - 1);
+				Object value = objList.get(Driver.menuSelect(userInput, createdObjects()) - 1);
 				
 				try {
 					setArrayValue.invoke(obj, value, arrayIndex);
@@ -212,7 +193,6 @@ public class ObjectGenerator {
 	public void setObjField(Object obj, int fieldIndex, Object value) {
 		TextDisplay.display("Please enter an int to set the field:");
 		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
-		Class<?> fieldType = field.getType();
 
 		field.setAccessible(true);
 		
@@ -277,7 +257,7 @@ public class ObjectGenerator {
 
 	public void serialize() {
 		TextDisplay.display("Would you like to serialize objects?");
-		switch (menuSelect(YesNoMenu)) {
+		switch (Driver.menuSelect(userInput, YesNoMenu)) {
 		case (1):
 			serializeList(objList);
 			break;
@@ -296,46 +276,4 @@ public class ObjectGenerator {
 		TextDisplay.display("This isnt implemented");
 	}
 
-	/**
-	 * Do not return until a valid int is returned
-	 * @return
-	 */
-	public int getNextInt()
-	{
-		int input = -1;
-		while(true)
-		{
-			try {
-				input = userInput.nextInt();
-			} catch (InputMismatchException e) {
-				TextDisplay.display("Invalid selection, try again.");
-				userInput.next();
-			}
-			return input;
-		}
-	}
-	
-	/**
-	 * Print a menu and do not return until valid option is selected
-	 * 
-	 * @param menuList
-	 * @return
-	 */
-	public int menuSelect(List<String> menuList) {
-		TextDisplay.display(menuList);
-		int input = -1;
-		do {
-			TextDisplay.display("Please input a valid entry:");
-			input = getNextInt();
-		} while (input < 0 || input > menuList.size());
-		TextDisplay.display("You have selected: " + input);
-		TextDisplay.display(TextDisplay.repeatChar("#", 50));
-		return input;
-	}
-
-	public static void main(String[] args) {
-		ObjectGenerator objGen = new ObjectGenerator();
-		TextDisplay.display("Object Generator:");
-		objGen.mainMenu();
-	}
 }
