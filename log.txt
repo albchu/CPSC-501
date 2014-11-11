@@ -1,0 +1,143 @@
+commit d01f92e5a5603c23926eab60a64df503d7516522
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 19:00:34 2014 -0600
+
+    Refactor: Intro is no longer hardcoded. It is read in from a file and uses TextDisplay to display. Added Common.readToFile() to utilities package with unit tests
+
+commit 839fd5d6cd6d0c27b3d65a1d39dfbc241de560b1
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 16:07:16 2014 -0600
+
+    Refactor: Replaced appropriate places with inBorders()
+
+commit 029fe123002fccc2cffcd9056517cfeb26a319aa
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 15:53:43 2014 -0600
+
+    Added unit tests for Forest.inBorders()
+
+commit 63c9101503dfb0493f664d0bf2f020e0ff4c602e
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 15:41:49 2014 -0600
+
+    Refactor: Changed Forest.inBorders to only check one value as it is a clearer function and more reusable
+
+commit 9e40e36ad38c1f54fbc9c4b1199e359bcb641dd7
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 11:58:09 2014 -0600
+
+    Removed redundant code from CommandProcessor
+
+commit 7222c4262ec7c0a115376ffaf8ed940570a5a869
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 10:24:38 2014 -0600
+
+    Refactor: Removed redundant code from CommandProcessor
+
+commit 05c410b965e08cf9bc5667527eb3da81708814ee
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Thu Oct 2 10:22:52 2014 -0600
+
+    Refactor: Changed sysout statements to use TextDisplay alerts, debugs and cheat methods
+
+commit 87156783f7e550a32f387b00b89666136c216089
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 21:04:40 2014 -0600
+
+    Added unit tests for mode toggles in CommandProcessor
+
+commit c05a6359b2682649e762659365b50a2788d101de
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 20:47:01 2014 -0600
+
+    Refactor: Moved TextDisplay into a utilities package for better organization
+
+commit 81a6296f2940d5c5f3cab54f3128ed2dbb9fbbd5
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 20:45:14 2014 -0600
+
+    Refactor: replaced redundant toggle code in mode toggles with simpler implementation
+
+commit 32279a5da7cdda0f027ef2ee4ce1a642e45126fc
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 20:43:12 2014 -0600
+
+    Refactored some sysout statements that were missed before
+
+commit acef91a6708c9f0c6a4fc2b9bbedf204b685fa55
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 20:35:33 2014 -0600
+
+    Refactored sysout statements in CommandProcessor to use TextDisplay wrapper methods and performed simple formatting on all source files
+
+commit 6e9e5f49509c70de74bd148536b2ec533da644f1
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 19:23:05 2014 -0600
+
+    Added a text display class for the program so it does not directly need to interact with printing out. This will make the program more scalable in the future
+
+commit e0d9c744ab5290f840a982a943df2c8068b5f07f
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:41:53 2014 -0600
+
+    Refactor: Added package path to Mode
+
+commit dbc005e447f35647f855fae5dced67a84adc05a3
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:41:39 2014 -0600
+
+    Refactor: Added package path to GameStatus
+
+commit e60e087b5df3596aa59ce47150d3b5f90f2ce0ad
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:41:16 2014 -0600
+
+    Refactor: Added package path to ForestItem
+
+commit 8f1e78c40fa42dbb406f3dfb0027cdf05921d61d
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:40:51 2014 -0600
+
+    Refactor: Added package path to Forest
+
+commit dbc178929da50a41e9c2a4440ebdf48ba127c87c
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:40:33 2014 -0600
+
+    Refactor: Added package path to FileForest
+
+commit 5f2f31592f33a20b98a6c45cf968bafb153b4a50
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:40:10 2014 -0600
+
+    Refactor: Added package path to CommandProcessor
+
+commit a02f23fe3e345df9520d7130f8c759027fe492e2
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:39:30 2014 -0600
+
+    Refactor: Added package path to Escape
+
+commit 5fdcc60d3ecd548c1b9447ceb19bbfac98174553
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:35:03 2014 -0600
+
+    Moved all main source code into main package
+
+commit fb2c3745b43a30ea41b713182216bc6102a60c13
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 17:16:24 2014 -0600
+
+    Forgot to add some extra non class resourses
+
+commit 3be92d7dc144f8f32a44b8c89d40b40ef9910e89
+Author: Albert Chu <albertchu539@gmail.com>
+Date:   Wed Oct 1 16:43:03 2014 -0600
+
+    Initial commit of original CPSC 233 game assignment
+
+commit 81449b45ebb4adee7f391abbd395a0e40b81bc34
+Author: albchu <albertchu539@gmail.com>
+Date:   Wed Sep 24 18:34:07 2014 -0600
+
+    Initial commit

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionObjects {
-	private List<?> listObjs;
+	private List<Object> listObjs;
 	
 	public CollectionObjects(){
-		listObjs = new ArrayList<?>();
+		listObjs = new ArrayList<Object>();
 	}
 	
 	public List<?> getListObjs() {
 		return listObjs;
 	}
 
-	public void setListObjs(List<?> listObjs) {
+	public void setListObjs(List<Object> listObjs) {
 		this.listObjs = listObjs;
 	}
 	
