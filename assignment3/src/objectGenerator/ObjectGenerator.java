@@ -117,7 +117,9 @@ public class ObjectGenerator {
 		TextDisplay.display("The type is: " + fieldType.getName());
 		if (fieldType.isArray())
 		{
-			setArrayElements(obj, fieldIndex);
+			TextDisplay.display("Please give index of array element to update: ");
+			int arrayIndex = getNextInt();
+			setArrayElements(obj, fieldIndex, arrayIndex );
 		}
 		else if (fieldType.equals(int.class)) {
 			setIntField(obj, fieldIndex);
@@ -160,15 +162,8 @@ public class ObjectGenerator {
 				}
 				
 				int input = 0;
-				TextDisplay.display("This is a primitive array");
-				try {
-					input = userInput.nextInt();
-				}
-				catch (InputMismatchException e) {
-					TextDisplay.display("Invalid selection, try again.");
-					userInput.next();
-					setArrayElements(obj, fieldIndex, arrayIndex);
-				}
+				TextDisplay.display("This is a primitive array, please enter an int value for the array");
+				input = getNextInt();
 				
 				try {
 					setArrayValue.invoke(obj, input, arrayIndex);
@@ -185,22 +180,39 @@ public class ObjectGenerator {
 			}
 			else
 			{
-				TextDisplay.display("This is not primitive array");
+				//Get method
+				try {
+					setArrayValue = obj.getClass().getMethod("setArrayValue", Object.class, int.class);
+				} catch (NoSuchMethodException e1) {
+					e1.printStackTrace();
+				} catch (SecurityException e1) {
+					e1.printStackTrace();
+				}
+				TextDisplay.display("Please select one of objects from list to assign to array index");
+				Object value = objList.get(menuSelect(createdObjects()) - 1);
 				
+				try {
+					setArrayValue.invoke(obj, value, arrayIndex);
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 				
 		}
 		else throw new RuntimeException("Field is not array type!");
-
-		
 	}
 
 	public void setObjField(Object obj, int fieldIndex, Object value) {
 		TextDisplay.display("Please enter an int to set the field:");
 		Field field = obj.getClass().getDeclaredFields()[fieldIndex];
 		Class<?> fieldType = field.getType();
-//		if (!fieldType.equals(value.getClass()))
-//			throw new RuntimeException("Cant set " + fieldType + " field to " + value.getClass() + " object");
 
 		field.setAccessible(true);
 		
