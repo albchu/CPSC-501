@@ -25,6 +25,8 @@ public class Driver
 	private Serializer serializer;
 	private String host;
 	private int port;
+	private String downloadDir = "downloaded";
+	private Inspector inspector;
 
 	public static void main(String[] args)
 	{
@@ -41,6 +43,7 @@ public class Driver
 		serializer = new Serializer();
 		host = serverConfig.get(0);
 		port = Integer.parseInt(serverConfig.get(1));
+		inspector = new Inspector();
 	}
 
 	public void mainMenu()
@@ -64,12 +67,15 @@ public class Driver
 				launchClient(host, port, serialized);
 				break;
 			case (5):
-				launchServer(host, port, "downloaded");
+				launchServer(host, port, downloadDir);
 				break;
 			case (6):
-				TextDisplay.display("PLACEHOLDER FOR DESERIALIZING SHIT");
-				System.exit(0);
-
+				TextDisplay.display("Deserializing files...");
+				List<File> downloadedFiles = Utilities.getListOfFiles(downloadDir);
+				List<Object> deserializedFiles = Deserializer.deserialize(Deserializer.fileToDocument(downloadedFiles));
+				for(Object obj : deserializedFiles)
+					inspector.inspect(obj, true);
+				break;
 			case (7):
 				TextDisplay.display("Now terminating program");
 				System.exit(0);
