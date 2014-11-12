@@ -3,4 +3,5 @@
 3) Serialize generated objects
 4) Send serialized objects
 5) Receive serialized objects
-6) Exit Program
+6) Deserialize downloaded objects
+7) Exit Program

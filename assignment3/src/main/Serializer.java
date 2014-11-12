@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -26,8 +27,9 @@ public class Serializer {
 		return docs;
 	}
 	
-	public void toFile(List<Object> objs)
+	public List<File> toFile(List<Object> objs)
 	{
+		List<File> files = new ArrayList<File>();
 		int i = 0;
 		for(Document doc : serializeList(objs))
 		{
@@ -36,12 +38,14 @@ public class Serializer {
 			// display nice nice
 			xmlOutput.setFormat(Format.getPrettyFormat());
 			try {
-				xmlOutput.output(doc, new FileWriter("Serialized" + i + ".xml"));
+				xmlOutput.output(doc, new FileWriter("Serialized" + ++i + ".xml"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			files.add(new File("Serialized" + i + ".xml"));
 		}
+		return files;
 	}
 	
 	public Document serialize(Object obj) {
