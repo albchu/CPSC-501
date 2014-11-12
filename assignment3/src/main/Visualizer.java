@@ -8,6 +8,7 @@ import static utilities.TextDisplay.*;
 public class Visualizer
 {
 	private List<Class<?>> inspectedClasses;
+	private Object topInstance;
 	public Visualizer()
 	{
 		inspectedClasses = new ArrayList<Class<?>>();
@@ -21,8 +22,10 @@ public class Visualizer
 	public void visualize(Object origInstance, boolean recursive)
 	{
 		Class<?> ObjClass = origInstance.getClass();
+		if(topInstance == null)
+			topInstance = origInstance;
 		int depth = 0;
-		visualize(origInstance, ObjClass, recursive, depth );	
+		this.visualize(origInstance, ObjClass, recursive, depth );	
 	}
 	
 	/**
@@ -34,11 +37,11 @@ public class Visualizer
 	public void visualize(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
 		if(ObjClass.isArray())
-			visualizeArray(origInstance, recursive, depth);
+			this.visualizeArray(origInstance, recursive, depth);
 		else if (ObjClass.isPrimitive())
-			visualizePrimitive(origInstance, depth);
+			this.visualizePrimitive(origInstance, depth);
 		else
-			visualizeObject(origInstance, ObjClass, recursive, depth);
+			this.visualizeObject(origInstance, ObjClass, recursive, depth);
 	}
 	
 	/**
@@ -51,6 +54,7 @@ public class Visualizer
 		display("Array Object:", depth);
 		display("Reference: " + origInstance, depth + 1);
 		Class<?> componentType = origInstance.getClass().getComponentType();
+		Class<?> objectType = componentType;
 		display("Component Type: " + componentType.getName(), depth + 1);
 		display();
 		int arrayLength = Array.getLength(origInstance);
@@ -60,8 +64,22 @@ public class Visualizer
 		{
 			display("Element Index: " + i, depth + 1);
 			Object elementObj = Array.get(origInstance, i);
+			System.out.println(componentType.isPrimitive());
+			System.out.println((objectType.equals(Object.class) && elementObj != null));
+			System.out.println(!objectType.equals(elementObj.getClass()));
+			if (!objectType.isPrimitive() && ((objectType.equals(Object.class) && elementObj != null) || !objectType.equals(elementObj.getClass())))
+				objectType = elementObj.getClass();	// Object arrays should output more specific info per element if its available
 			if (elementObj != null)
-				visualize(elementObj, componentType, recursive, depth + 1);
+			{
+				if (elementObj.equals(topInstance))
+				{
+					display("Circular reference to self. Halting recursion on this object", depth + 1);
+					visualize(elementObj, objectType, false, depth + 1);
+				}
+				else 
+					visualize(elementObj, objectType, recursive, depth + 1);
+				
+			}
 			else
 				display("Element: Null", depth + 1);
 			display();
@@ -88,7 +106,7 @@ public class Visualizer
 		{
 			visualizeFieldClasses(origInstance, ObjClass, objectsToInspect, recursive, depth);
 			
-			if(superClass != null && !inspectedClasses.contains(ObjClass.getSuperclass()))
+			if(superClass != null && !superClass.equals(Object.class) && !inspectedClasses.contains(ObjClass.getSuperclass()))
 			{
 				display("SUPERCLASS OF " + ObjClass.getName(), depth);
 				visualize(origInstance, superClass, recursive, depth + 1);
@@ -189,7 +207,8 @@ public class Visualizer
 					else
 					{
 						Visualizer newInspect = new Visualizer(); // Needs a new instance otherwise we may cut a superclass unexpectedly
-						newInspect.visualize(fieldObj, fieldObj.getClass(), recursive, depth + 1); 
+						newInspect.setTopInstance(topInstance);
+						newInspect.visualize(fieldObj, fieldObj.getClass(), recursive, depth + 1);
 					}
 				} catch (Exception exp)
 				{
@@ -227,5 +246,13 @@ public class Visualizer
 			display();
 		}
 		display();
+	}
+
+	public Object getTopInstance() {
+		return topInstance;
+	}
+
+	public void setTopInstance(Object topInstance) {
+		this.topInstance = topInstance;
 	}
 }

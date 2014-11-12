@@ -5,7 +5,7 @@ public class ArraysOfPrimitive {
 	
 	public ArraysOfPrimitive()
 	{
-		arrayInt = new int[1000];
+		arrayInt = new int[100];
 	}
 	
 	public int[] getArrayInt() {
