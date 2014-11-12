@@ -26,7 +26,7 @@ public class Driver
 	private String host;
 	private int port;
 	private String downloadDir = "downloaded";
-	private Inspector inspector;
+	private Visualizer inspector;
 
 	public static void main(String[] args)
 	{
@@ -43,7 +43,7 @@ public class Driver
 		serializer = new Serializer();
 		host = serverConfig.get(0);
 		port = Integer.parseInt(serverConfig.get(1));
-		inspector = new Inspector();
+		inspector = new Visualizer();
 	}
 
 	public void mainMenu()
@@ -74,7 +74,7 @@ public class Driver
 				List<File> downloadedFiles = Utilities.getListOfFiles(downloadDir);
 				List<Object> deserializedFiles = Deserializer.deserialize(Deserializer.fileToDocument(downloadedFiles));
 				for(Object obj : deserializedFiles)
-					inspector.inspect(obj, true);
+					inspector.visualize(obj, true);
 				break;
 			case (7):
 				TextDisplay.display("Now terminating program");

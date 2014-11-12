@@ -5,10 +5,10 @@ import java.util.*;
 
 import static utilities.TextDisplay.*;
 
-public class Inspector
+public class Visualizer
 {
 	private List<Class<?>> inspectedClasses;
-	public Inspector()
+	public Visualizer()
 	{
 		inspectedClasses = new ArrayList<Class<?>>();
 	}
@@ -18,11 +18,11 @@ public class Inspector
 	 * @param origInstance
 	 * @param recursive
 	 */
-	public void inspect(Object origInstance, boolean recursive)
+	public void visualize(Object origInstance, boolean recursive)
 	{
 		Class<?> ObjClass = origInstance.getClass();
 		int depth = 0;
-		inspect(origInstance, ObjClass, recursive, depth );	
+		visualize(origInstance, ObjClass, recursive, depth );	
 	}
 	
 	/**
@@ -31,14 +31,14 @@ public class Inspector
 	 * @param ObjClass
 	 * @param recursive
 	 */
-	public void inspect(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
+	public void visualize(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
 		if(ObjClass.isArray())
-			inspectArray(origInstance, recursive, depth);
+			visualizeArray(origInstance, recursive, depth);
 		else if (ObjClass.isPrimitive())
-			inspectPrimitive(origInstance, depth);
+			visualizePrimitive(origInstance, depth);
 		else
-			inspectObject(origInstance, ObjClass, recursive, depth);
+			visualizeObject(origInstance, ObjClass, recursive, depth);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class Inspector
 	 * @param obj
 	 * @param recursive
 	 */
-	private void inspectArray(Object origInstance, boolean recursive, int depth)
+	private void visualizeArray(Object origInstance, boolean recursive, int depth)
 	{
 		display("Array Object:", depth);
 		display("Reference: " + origInstance, depth + 1);
@@ -61,7 +61,7 @@ public class Inspector
 			display("Element Index: " + i, depth + 1);
 			Object elementObj = Array.get(origInstance, i);
 			if (elementObj != null)
-				inspect(elementObj, componentType, recursive, depth + 1);
+				visualize(elementObj, componentType, recursive, depth + 1);
 			else
 				display("Element: Null", depth + 1);
 			display();
@@ -69,7 +69,7 @@ public class Inspector
 		display();
 	}
 	
-	private void inspectObject(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
+	private void visualizeObject(Object origInstance, Class<?> ObjClass, boolean recursive, int depth)
 	{
 		List<Field> objectsToInspect = new ArrayList<Field>();
 		Class<?> superClass = ObjClass.getSuperclass();
@@ -80,18 +80,18 @@ public class Inspector
 		display("Intermediate Super Class: " + superClass, depth);
 		
 		// inspect the current class
-		inspectConstructors(ObjClass, depth);
-		inspectInterfaces(ObjClass, depth);
-		inspectFields(origInstance, ObjClass, objectsToInspect, depth);
-		inspectMethods(ObjClass, depth);
+		visualizeConstructors(ObjClass, depth);
+		visualizeInterfaces(ObjClass, depth);
+		visualizeFields(origInstance, ObjClass, objectsToInspect, depth);
+		visualizeMethods(ObjClass, depth);
 		if (recursive)
 		{
-			inspectFieldClasses(origInstance, ObjClass, objectsToInspect, recursive, depth);
+			visualizeFieldClasses(origInstance, ObjClass, objectsToInspect, recursive, depth);
 			
 			if(superClass != null && !inspectedClasses.contains(ObjClass.getSuperclass()))
 			{
 				display("SUPERCLASS OF " + ObjClass.getName(), depth);
-				inspect(origInstance, superClass, recursive, depth + 1);
+				visualize(origInstance, superClass, recursive, depth + 1);
 			}
 		}
 	}
@@ -103,7 +103,7 @@ public class Inspector
 	 * This method will only print out the value field of the primitive
 	 * @param origInstance
 	 */
-	private void inspectPrimitive(Object obj, int depth)
+	private void visualizePrimitive(Object obj, int depth)
 	{
 		try
 		{
@@ -117,7 +117,7 @@ public class Inspector
 		}
 	}
 	
-	private void inspectConstructors(Class<?> objClass, int depth)
+	private void visualizeConstructors(Class<?> objClass, int depth)
 	{
 		if(objClass.getDeclaredConstructors().length > 0)
 			display("Constructors:", depth);
@@ -137,7 +137,7 @@ public class Inspector
 		display();
 	}
 	
-	private void inspectMethods(Class<?> objClass, int depth)
+	private void visualizeMethods(Class<?> objClass, int depth)
 	{
 		if(objClass.getDeclaredMethods().length > 0)
 			display("Methods:", depth);
@@ -158,7 +158,7 @@ public class Inspector
 		display();
 	}
 
-	private void inspectInterfaces(Class<?> objClass, int depth)
+	private void visualizeInterfaces(Class<?> objClass, int depth)
 	{
 		if(objClass.getInterfaces().length > 0)
 			display("Interfaces:", depth);
@@ -171,7 +171,7 @@ public class Inspector
 		display();
 	}
 
-	private void inspectFieldClasses(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, boolean recursive, int depth)
+	private void visualizeFieldClasses(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, boolean recursive, int depth)
 	{
 
 		if (objectsToInspect.size() > 0)
@@ -188,8 +188,8 @@ public class Inspector
 						display("No value given", depth + 1);
 					else
 					{
-						Inspector newInspect = new Inspector(); // Needs a new instance otherwise we may cut a superclass unexpectedly
-						newInspect.inspect(fieldObj, fieldObj.getClass(), recursive, depth + 1); 
+						Visualizer newInspect = new Visualizer(); // Needs a new instance otherwise we may cut a superclass unexpectedly
+						newInspect.visualize(fieldObj, fieldObj.getClass(), recursive, depth + 1); 
 					}
 				} catch (Exception exp)
 				{
@@ -200,7 +200,7 @@ public class Inspector
 		display();
 	}
 
-	private void inspectFields(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, int depth)
+	private void visualizeFields(Object obj, Class<?> ObjClass, List<Field> objectsToInspect, int depth)
 	{
 		if (ObjClass.getDeclaredFields().length > 0)
 			display("Fields:", depth);
