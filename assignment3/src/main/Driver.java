@@ -1,5 +1,13 @@
 package main;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +19,12 @@ import utilities.Utilities;
 public class Driver {
 	private List<String> mainMenuText;
 	private List<String> YesNoMenu;
+	private List<String> serverConfig;
 	private Scanner userInput = new Scanner(System.in);
 	private ObjectGenerator objGen;
 	private Serializer serializer;
 	private String host;
+	private int port;
 	
 	public static void main(String[] args) {
 		Driver driver = new Driver();
@@ -25,9 +35,11 @@ public class Driver {
 		YesNoMenu = Utilities
 				.readToList("src/objectGenerator/assets/YesNo.txt");
 		mainMenuText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
+		serverConfig = Utilities.readToList("src/objectGenerator/assets/serverConfig.txt");
 		objGen = new ObjectGenerator();
 		serializer = new Serializer();
-		host = "localhost";
+		host = serverConfig.get(0);
+		port = Integer.parseInt(serverConfig.get(1));
 	}
 	
 	public void mainMenu() {
@@ -47,14 +59,41 @@ public class Driver {
 			break;
 
 		case (4):
-			TextDisplay.display("Now sending program to :" + host);
-			System.exit(0);
-
+			launchServer(host, port);
 		case (5):
+			TextDisplay.display("Now accepting serialized files on: " + host + " and port: " + port);
+		
+		case (6):
 			TextDisplay.display("Now terminating program");
 		System.exit(0);
 		}
 		mainMenu();
+	}
+	
+	public static void launchServer(String host, int port, List<File> servingFiles) throws IOException
+	{
+		TextDisplay.display("Now serving serialized files on: " + host + " and port: " + port);
+		ServerSocket servsock = new ServerSocket(port);
+		while (true) {
+			Socket sock = servsock.accept();
+			TextDisplay.display("Accepted connection from " + sock.getInetAddress());
+			for(File file: servingFiles)
+			{
+				byte[] byteArray = new byte[(int) file.length()];
+				BufferedInputStream bis;
+				try {
+					bis = new BufferedInputStream(
+							new FileInputStream(file));
+					bis.read(byteArray, 0, byteArray.length);
+					OutputStream os = sock.getOutputStream();
+					os.write(byteArray, 0, byteArray.length);
+					os.flush();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+			sock.close();
+		}
 	}
 	
 	/**

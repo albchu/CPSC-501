@@ -2,4 +2,5 @@
 2) View generated objects
 3) Serialize generated objects
 4) Send serialized objects
-5) Exit Program
+5) Receive serialized objects
+6) Exit Program
