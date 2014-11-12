@@ -13,6 +13,7 @@ public class Driver {
 	private List<String> YesNoMenu;
 	private Scanner userInput = new Scanner(System.in);
 	private ObjectGenerator objGen;
+	private Serializer serializer;
 	
 	public static void main(String[] args) {
 		Driver driver = new Driver();
@@ -24,6 +25,7 @@ public class Driver {
 				.readToList("src/objectGenerator/assets/YesNo.txt");
 		mainMenuText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		objGen = new ObjectGenerator();
+		serializer = new Serializer();
 	}
 	
 	public void mainMenu() {
@@ -38,7 +40,7 @@ public class Driver {
 			TextDisplay.display(TextDisplay.repeatChar("#", 50));
 			break;
 		case (3):
-			serialize();
+			serializer.toFile(objGen.getObjList());
 			break;
 
 		case (4):
@@ -48,26 +50,26 @@ public class Driver {
 		mainMenu();
 	}
 	
-	/**
-	 * Serializes all elements in the parameter list
-	 * 
-	 * @param list
-	 */
-	public void serializeList(List<Object> list) {
-		TextDisplay.display("This isnt implemented");
-	}
-
-	public void serialize() {
-		TextDisplay.display("Would you like to serialize objects?");
-		switch (Driver.menuSelect(userInput, YesNoMenu)) {
-		case (1):
-			serializeList(objGen.getObjList());
-			break;
-		case (2):
-			System.exit(0);
-			break;
-		}
-	}
+//	/**
+//	 * Serializes all elements in the parameter list
+//	 * 
+//	 * @param list
+//	 */
+//	public void serializeList(List<Object> list) {
+//		TextDisplay.display("This isnt implemented");
+//	}
+//
+//	public void serialize() {
+//		TextDisplay.display("Would you like to serialize objects?");
+//		switch (Driver.menuSelect(userInput, YesNoMenu)) {
+//		case (1):
+//			serializeList(objGen.getObjList());
+//			break;
+//		case (2):
+//			System.exit(0);
+//			break;
+//		}
+//	}
 	
 	/**
 	 * Do not return until a valid int is returned

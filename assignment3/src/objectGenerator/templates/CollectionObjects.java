@@ -8,6 +8,10 @@ public class CollectionObjects {
 	
 	public CollectionObjects(){
 		listObjs = new ArrayList<Object>();
+		listObjs.add(new SimpleInts());
+		listObjs.add(new ArraysOfPrimitive());
+		listObjs.add(new ArrayOfObjectRefs());
+		
 	}
 	
 	public List<?> getListObjs() {

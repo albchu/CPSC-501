@@ -64,7 +64,6 @@ public class ObjectGenerator {
 		case (5):
 			CollectionObjects collectionObjects = new CollectionObjects();
 			objList.add(collectionObjects);
-			setFields(collectionObjects);
 			break;
 
 		case (6):
