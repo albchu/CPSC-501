@@ -14,6 +14,7 @@ public class Driver {
 	private Scanner userInput = new Scanner(System.in);
 	private ObjectGenerator objGen;
 	private Serializer serializer;
+	private String host;
 	
 	public static void main(String[] args) {
 		Driver driver = new Driver();
@@ -26,6 +27,7 @@ public class Driver {
 		mainMenuText = Utilities.readToList("src/objectGenerator/assets/MainMenuText.txt");
 		objGen = new ObjectGenerator();
 		serializer = new Serializer();
+		host = "localhost";
 	}
 	
 	public void mainMenu() {
@@ -41,35 +43,19 @@ public class Driver {
 			break;
 		case (3):
 			serializer.toFile(objGen.getObjList());
+			TextDisplay.display("Output serialized documents to root");
 			break;
 
 		case (4):
-			TextDisplay.display("Now terminating program");
+			TextDisplay.display("Now sending program to :" + host);
 			System.exit(0);
+
+		case (5):
+			TextDisplay.display("Now terminating program");
+		System.exit(0);
 		}
 		mainMenu();
 	}
-	
-//	/**
-//	 * Serializes all elements in the parameter list
-//	 * 
-//	 * @param list
-//	 */
-//	public void serializeList(List<Object> list) {
-//		TextDisplay.display("This isnt implemented");
-//	}
-//
-//	public void serialize() {
-//		TextDisplay.display("Would you like to serialize objects?");
-//		switch (Driver.menuSelect(userInput, YesNoMenu)) {
-//		case (1):
-//			serializeList(objGen.getObjList());
-//			break;
-//		case (2):
-//			System.exit(0);
-//			break;
-//		}
-//	}
 	
 	/**
 	 * Do not return until a valid int is returned

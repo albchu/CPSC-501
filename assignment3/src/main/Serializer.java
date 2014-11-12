@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+// Following contains blocks of code adapted from Java Reflection: In Action
 public class Serializer {
 	
 	public List<Document> serializeList(List<Object> objs) {
@@ -34,7 +36,7 @@ public class Serializer {
 			// display nice nice
 			xmlOutput.setFormat(Format.getPrettyFormat());
 			try {
-				xmlOutput.output(doc, new FileWriter(++i + "file.xml"));
+				xmlOutput.output(doc, new FileWriter("Serialized" + i + ".xml"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,83 +45,76 @@ public class Serializer {
 	}
 	
 	public Document serialize(Object obj) {
-		return serializeHelper(obj, new Document(new Element("serialized")),
-				new IdentityHashMap());
+		return serialize(obj, new Document(new Element("serialized")), new HashMap<Object, String>());
 	}
 
-	private static Document serializeHelper(Object obj, Document target,
-			Map table) {
-
-		// Document target = new Document(new Element("serialized"));
-		// Map table = new IdentityHashMap<>();
+	public static Document serialize(Object obj, Document target,
+			Map<Object, String> map) {
 
 		// Create unique id for obj to be serialized
-		String id = Integer.toString(table.size());
-		table.put(obj, id);
-		Class objclass = obj.getClass();
+		String id = Integer.toString(map.size());
+		map.put(obj, id);
+		Class<?> objclass = obj.getClass();
 
 		// Creates an xml element for object
-		Element oElt = new Element("object");
-		oElt.setAttribute("class", objclass.getName());
-		oElt.setAttribute("id", id);
-		target.getRootElement().addContent(oElt);
+		Element objElem = new Element("object");
+		objElem.setAttribute("class", objclass.getName());
+		objElem.setAttribute("id", id);
+		target.getRootElement().addContent(objElem);
 
 		// Handles arrays differently from scalars
-		if (!objclass.isArray()) {
+		if (objclass.isArray()) 
+		{
+			Class<?> componentType = objclass.getComponentType();
+
+			int length = Array.getLength(obj);
+			objElem.setAttribute("length", Integer.toString(length));
+			for (int i = 0; i < length; i++) {
+				objElem.addContent(serializeVariable(componentType,
+						Array.get(obj, i), target, map));
+			}
+		} 
+		else 
+		{
 			// List<Field> fields = getNonStaticFields(objclass);
 			for (Field field : getNonStaticFields(objclass)) {
-				if (!Modifier.isPublic(field.getModifiers()))
-					field.setAccessible(true);
-				Element fElt = new Element("field");
-				fElt.setAttribute("name", field.getName());
-				Class declClass = field.getDeclaringClass();
-				fElt.setAttribute("declaringclass", declClass.getName());
+				field.setAccessible(true);
+				Element fieldElem = new Element("field");
+				fieldElem.setAttribute("name", field.getName());
+				Class<?> declaringClass = field.getDeclaringClass();
+				fieldElem.setAttribute("declaringclass", declaringClass.getName());
 
-				Class fieldtype = field.getType();
+				Class<?> fieldtype = field.getType();
 				Object child = null;
 				try {
 					child = field.get(obj);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-				if (Modifier.isTransient(field.getModifiers())) {
-					child = null;
-				}
-				fElt.addContent(serializeVariable(fieldtype, child, target,
-						table));
+				fieldElem.addContent(serializeVariable(fieldtype, child, target,
+						map));
 
-				oElt.addContent(fElt);
-			}
-		} else {
-			Class componentType = objclass.getComponentType();
-
-			int length = Array.getLength(obj);
-			oElt.setAttribute("length", Integer.toString(length));
-			for (int i = 0; i < length; i++) {
-				oElt.addContent(serializeVariable(componentType,
-						Array.get(obj, i), target, table));
-			}
+				objElem.addContent(fieldElem);
+			}		
 		}
 
 		return target;
 	}
 
-	private static Element serializeVariable(Class fieldtype, Object child,
-			Document target, Map table) {
+	private static Element serializeVariable(Class<?> fieldtype, Object child,
+			Document target, Map<Object, String> map) {
 		if (child == null) {
 			return new Element("null");
 		} else if (!fieldtype.isPrimitive()) {
 			Element reference = new Element("reference");
-			if (table.containsKey(child)) {
-				reference.setText(table.get(child).toString());
+			if (map.containsKey(child)) {
+				reference.setText(map.get(child).toString());
 			} else {
-				reference.setText(Integer.toString(table.size()));
-				serializeHelper(child, target, table);
+				reference.setText(Integer.toString(map.size()));
+				serialize(child, target, map);
 			}
 			return reference;
 		} else {
