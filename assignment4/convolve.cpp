@@ -3,6 +3,7 @@
 #include <sndfile.h>
 #include <sndfile.hh>
 //#include <stdlib.h>
+#include <time.h> 
 #include <iostream>
 using namespace std;
 
@@ -95,8 +96,11 @@ int main(int argc, char* argv[])
 	int output_size = input_size + impulse_size - 1;
 	float * output_signal = new float[output_size];
 	/*  Do the convolution, and print the output signal  */
+	clock_t t;
+	t = clock();
 	convolve(input_signal, input_size, impulse_response, impulse_size, output_signal, output_size);
-
+	t = clock() - t;
+	cout << "Total amount of time spent convoluting: " << ((float)t) / CLOCKS_PER_SEC << " seconds" << endl;
 	write_wav(output_file, output_signal, output_size);
 
 	/*  End of program  */
