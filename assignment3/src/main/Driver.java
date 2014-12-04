@@ -26,7 +26,7 @@ public class Driver
 	private String host;
 	private int port;
 	private String downloadDir = "downloaded";
-	private Inspector inspector;
+	private Visualizer inspector;
 
 	public static void main(String[] args)
 	{
@@ -43,7 +43,7 @@ public class Driver
 		serializer = new Serializer();
 		host = serverConfig.get(0);
 		port = Integer.parseInt(serverConfig.get(1));
-		inspector = new Inspector();
+		inspector = new Visualizer();
 	}
 
 	public void mainMenu()
@@ -74,7 +74,11 @@ public class Driver
 				List<File> downloadedFiles = Utilities.getListOfFiles(downloadDir);
 				List<Object> deserializedFiles = Deserializer.deserialize(Deserializer.fileToDocument(downloadedFiles));
 				for(Object obj : deserializedFiles)
-					inspector.inspect(obj, true);
+				{
+					TextDisplay.display("Object Visualization: ");
+					inspector.visualize(obj, true);
+					TextDisplay.display();
+				}
 				break;
 			case (7):
 				TextDisplay.display("Now terminating program");
@@ -87,8 +91,7 @@ public class Driver
 	{
 		TextDisplay.display("Now accepting serialized files from: " + host + " and port: " + port);
 
-		(new File(dirPath)).mkdirs(); // Create the directory to download files
-										// to
+		(new File(dirPath)).mkdirs(); // Create the directory to download files to
 		ServerSocket serverSocket;
 		try
 		{
@@ -121,7 +124,6 @@ public class Driver
 			serverSocket.close();
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

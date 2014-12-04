@@ -10,6 +10,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+//Following contains blocks of code adapted from Java Reflection: In Action textbook
 public class Deserializer
 {
 
@@ -58,59 +59,55 @@ public class Deserializer
 		return table.get("0");
 	}
 
-	private static void createInstances(Map table, List objList) throws Exception
+	private static void createInstances(Map map, List objList) throws Exception
 	{
 		for (int i = 0; i < objList.size(); i++)
 		{
-			Element oElt = (Element) objList.get(i);
-			Class cls = Class.forName(oElt.getAttributeValue("class"));
+			Element objElem = (Element) objList.get(i);
+			Class<?> cls = Class.forName(objElem.getAttributeValue("class"));
 			Object instance = null;
 			if (!cls.isArray())
 			{
-				Constructor c = cls.getDeclaredConstructor(null);
-				if (!Modifier.isPublic(c.getModifiers()))
-				{
-					c.setAccessible(true);
-
-				}
+				Constructor<?> c = cls.getDeclaredConstructor(null);
+				c.setAccessible(true);
 				instance = c.newInstance(null);
 			} else
 			{
-				instance = Array.newInstance(cls.getComponentType(), Integer.parseInt(oElt.getAttributeValue("length")));
+				instance = Array.newInstance(cls.getComponentType(), Integer.parseInt(objElem.getAttributeValue("length")));
 			}
-			table.put(oElt.getAttributeValue("id"), instance);
+			map.put(objElem.getAttributeValue("id"), instance);
 		}
 	}
 
-	private static void assignFieldValues(Map table, List objList) throws Exception
+	private static void assignFieldValues(Map map, List objList) throws Exception
 	{
 		for (int i = 0; i < objList.size(); i++)
 		{
-			Element oElt = (Element) objList.get(i);
-			Object instance = table.get(oElt.getAttributeValue("id"));
-			List fElts = oElt.getChildren();
+			Element objElem = (Element) objList.get(i);
+			Object instance = map.get(objElem.getAttributeValue("id"));
+			List<Element> fieldElems = objElem.getChildren();
 			if (!instance.getClass().isArray())
 			{
-				for (int j = 0; j < fElts.size(); j++)
+				for (int j = 0; j < fieldElems.size(); j++)
 				{
-					Element fElt = (Element) fElts.get(j);
-					String className = fElt.getAttributeValue("declaringclass");
-					Class fieldDC = Class.forName(className);
-					String fieldName = fElt.getAttributeValue("name");
+					Element fieldElem = (Element) fieldElems.get(j);
+					String className = fieldElem.getAttributeValue("declaringclass");
+					Class<?> fieldDC = Class.forName(className);
+					String fieldName = fieldElem.getAttributeValue("name");
 					Field f = fieldDC.getDeclaredField(fieldName);
 					if (!Modifier.isPublic(f.getModifiers()))
 					{
 						f.setAccessible(true);
 					}
-					Element vElt = (Element) fElt.getChildren().get(0);
-					f.set(instance, deserializeValue(vElt, f.getType(), table));
+					Element vElt = (Element) fieldElem.getChildren().get(0);
+					f.set(instance, deserializeValue(vElt, f.getType(), map));
 				}
 			} else
 			{
 				Class comptype = instance.getClass().getComponentType();
-				for (int j = 0; j < fElts.size(); j++)
+				for (int j = 0; j < fieldElems.size(); j++)
 				{
-					Array.set(instance, j, deserializeValue((Element) fElts.get(j), comptype, table));
+					Array.set(instance, j, deserializeValue((Element) fieldElems.get(j), comptype, map));
 				}
 			}
 		}

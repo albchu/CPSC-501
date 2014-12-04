@@ -3,7 +3,9 @@
 #include <sndfile.h>
 #include <sndfile.hh>
 #include <time.h> 
+#include <stdlib.h>
 #include <iostream>
+
 using namespace std;
 
 #define SWAP(a,b)  tempr=(a);(a)=(b);(b)=tempr
@@ -53,6 +55,14 @@ int read_wav(const char *file_name, float *& buf)
 int write_wav(const char *file_name, float *& buf, int num)
 {
 	const int format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+	const int channels = 1;
+	const int sampleRate = 48000;
+
+	SndfileHandle outfile(file_name, SFM_WRITE, format, channels, sampleRate);
+	if (!outfile) return -1;
+
+	const int format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+	//  const int format=SF_FORMAT_WAV | SF_FORMAT_FLOAT;
 	const int channels = 1;
 	const int sampleRate = 48000;
 

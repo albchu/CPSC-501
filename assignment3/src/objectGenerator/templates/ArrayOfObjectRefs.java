@@ -6,7 +6,7 @@ public class ArrayOfObjectRefs {
 
 	public ArrayOfObjectRefs()
 	{
-		arrayObjectRefs = new Object[1000];
+		arrayObjectRefs = new Object[100];
 	}
 	
 	public Object[] getArrayObjectRefs() {
