@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <sndfile.h>
 #include <sndfile.hh>
-//#include <stdlib.h>
+#include <stdlib.h>
 #include <iostream>
+
 using namespace std;
 
 /*  Function prototypes  */
