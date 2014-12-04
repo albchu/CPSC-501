@@ -84,151 +84,24 @@ int main(int argc, char* argv[])
 	cout << "Input Response file: " << input_response_file << endl;
 	cout << "Output file: " << output_file << endl;
 
-	float *input_signal;
-	int num = read_wav(input_file, input_signal);
-	write_wav(output_file, input_signal, num);
-	//cout << num << endl;
-	//for (int i = 0; i < num; i++)
-	//	cout << buf[i] << endl;
-
-
-
-
-	//float input_signal[100], impulse_response[20], output_signal[120];
-	//int input_size, impulse_size, output_size;
-
-	///*  Create an example input signal  */
-	//input_signal[0] = 1.0;
-	//input_signal[1] = 0.5;
-	//input_signal[2] = 0.25;
-	//input_signal[3] = 0.125;
-	//input_size = 4;
+	float *input_signal, *impulse_response;
+	int input_size = read_wav(input_file, input_signal);
+	int impulse_size = read_wav(input_response_file, impulse_response);
 
 	/*  Print out the input signal to the screen  */
 	//print_vector("Original input signal", buf, num);
 
-	/*  Create an "identity" impulse response.  The output should be
-	the same as the input when convolved with this  */
-	//impulse_response[0] = 1.0;
-	//impulse_size = 1;
+	/*  Set the expected size of the output signal  */
+	int output_size = input_size + impulse_size - 1;
+	float * output_signal = new float[output_size];
+	/*  Do the convolution, and print the output signal  */
+	convolve(input_signal, input_size, impulse_response, impulse_size, output_signal, output_size);
 
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Output signal using identity IR", output_signal, output_size);
-
-
-	///*  Create an "inverse" impulse response.  The output should be
-	//inverted when convolved with this  */
-	//impulse_response[0] = -1.0;
-	//impulse_size = 1;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size, output_signal, output_size);
-	//print_vector("Output signal using inverse IR", output_signal, output_size);
-
-
-	///*  Create a "scaling" impulse response.  The output should be
-	//1/2 the amplitude when convolved with this  */
-	//impulse_response[0] = 0.5;
-	//impulse_size = 1;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Output signal scaled by 1/2", output_signal, output_size);
-
-
-	///*  Create a "delay" impulse response.  The output should be
-	//delayed by 2 samples  */
-	//impulse_response[0] = 0.0;
-	//impulse_response[1] = 0.0;
-	//impulse_response[2] = 1.0;
-	//impulse_size = 3;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Output delayed 2 samples", output_signal, output_size);
-
-
-	///*  Create a "delay and scaling" impulse response.  The output should be
-	//delayed by 2 samples and be 1/2 the amplitude  */
-	//impulse_response[0] = 0.0;
-	//impulse_response[1] = 0.0;
-	//impulse_response[2] = 0.5;
-	//impulse_size = 3;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Delayed 2 samples, 1/2 amplitude", output_signal, output_size);
-
-
-	///*  Create an "echo effect".  The output will contain the original signal
-	//plus a copy delayed by 2 samples and 1/2 the amplitude.  The original
-	//and copy will overlap starting at the 3rd sample  */
-	//impulse_response[0] = 1.0;
-	//impulse_response[1] = 0.0;
-	//impulse_response[2] = 0.5;
-	//impulse_size = 3;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Overlapping echo", output_signal, output_size);
-
-
-	///*  Create an "echo effect" that doesn't overlap.  The output will
-	//contain the original signal  plus a copy delayed by 5 samples
-	//and 1/2 the amplitude.  */
-	//impulse_response[0] = 1.0;
-	//impulse_response[1] = 0.0;
-	//impulse_response[2] = 0.0;
-	//impulse_response[3] = 0.0;
-	//impulse_response[4] = 0.0;
-	//impulse_response[5] = 0.5;
-	//impulse_size = 6;
-
-	///*  Set the expected size of the output signal  */
-	//output_size = input_size + impulse_size - 1;
-
-	///*  Do the convolution, and print the output signal  */
-	//convolve(input_signal, input_size, impulse_response, impulse_size,
-	//	output_signal, output_size);
-	//print_vector("Non-overlapping echo", output_signal, output_size);
-
-
-	///*  Interchange the input signal and impulse response.  Since
-	//convolution is commutative, you should get the same output  */
-	//convolve(impulse_response, impulse_size, input_signal, input_size,
-	//	output_signal, output_size);
-	//print_vector("Same as above, but with interchanged h[] and x[]",
-	//	output_signal, output_size);
-
+	write_wav(output_file, output_signal, output_size);
 
 	/*  End of program  */
 	return 0;
 }
-
 
 
 /*****************************************************************************
@@ -248,7 +121,6 @@ int main(int argc, char* argv[])
 *                       equal N + M - 1
 *
 *****************************************************************************/
-
 void convolve(float x[], int N, float h[], int M, float y[], int P)
 {
   int n, m;
@@ -262,16 +134,20 @@ void convolve(float x[], int N, float h[], int M, float y[], int P)
   }
 
   /*  Clear the output buffer y[] to all zero values  */  
+  cout << "Clearing the output buffer to all zero values...";
   for (n = 0; n < P; n++)
     y[n] = 0.0;
-
+  cout << "Completed" << endl;
   /*  Do the convolution  */
   /*  Outer loop:  process each input value x[n] in turn  */
+  cout << "Convolution loop: " << endl;
   for (n = 0; n < N; n++) {
+	  cout << ((float)n)/N * 100 << "%" << "\r";
     /*  Inner loop:  process x[n] with each sample of h[]  */
     for (m = 0; m < M; m++)
       y[n+m] += x[n] * h[m];
   }
+  cout << endl;
 }
 
 
