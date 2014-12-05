@@ -5,8 +5,9 @@
 #include <time.h>
 #include <algorithm>
 #include <iostream>
+#include <math.h> 
 using namespace std;
-#define LOG_TWO		0.69314718	
+	
 #define SWAP(a,b)  tempr=(a);(a)=(b);(b)=tempr
 
 /*  Function prototypes  */
